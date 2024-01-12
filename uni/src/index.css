@@ -5,3 +5,67 @@
 :root {
 background: #ECF2F9;
 }
+
+.shadow{
+box-shadow: -2px -2px 2px 0px #B8CCE0, -1px -1px 0px 0px #FFF, -2px -2px 2px 0px #B8CCE0 inset, -1px -1px 0px 0px #FFF inset;
+}
+.shadowMain{
+    border-radius: 35px;
+background: #ECF2F9;
+box-shadow: 10px 10px 10px 0px #B8CCE0, -10px -10px 10px 0px rgba(255, 255, 255, 0.50);
+
+}
+.sd{
+    border-radius: 35px;
+background: #ECF2F9;
+box-shadow: 10px 10px 10px 0px #C9D9E8, 0px 4px 4px 0px rgba(255, 255, 255, 0.25) inset;
+}
+
+.shadowSecond{
+border-radius: 32px;
+background: #F1F5F9;
+box-shadow: -2px -2px 2px 0px #B8CCE0, -1px -1px 0px 0px #FFF, -2px -2px 2px 0px #B8CCE0 inset, -1px -1px 0px 0px #FFF inset;
+
+}
+.shadowWhite{
+    border-radius: 32px;
+background: #FEFEFF;
+box-shadow: -2px -2px 2px 0px #B8CCE0, -1px -1px 0px 0px #FFF, -2px -2px 2px 0px #B8CCE0 inset, -1px -1px 0px 0px #FFF inset;
+
+}
+.shadowThird{
+    border-radius: 32px;
+background: #F1F5F9;
+box-shadow: 5px 5px 13px 0px #B8CCE0, -5px -5px 10px 0px rgba(255, 255, 255, 0.90), 5px -5px 10px 0px rgba(184, 204, 224, 0.30), -5px 5px 10px 0px rgba(184, 204, 224, 0.30), -1px -1px 2px 0px #B8CCE0 inset, 1px 1px 2px 0px rgba(255, 255, 255, 0.30) inset;
+
+
+
+}
+
+.bg{
+background: rgba(255, 255, 255, 0.50);
+box-shadow: -2px -2px 2px 0px #B8CCE0, -1px -1px 0px 0px #FFF, -2px -2px 2px 0px #B8CCE0 inset, -1px -1px 0px 0px #FFF inset;
+}
+.white{
+    border-radius: 32px;
+background: #FFF;
+box-shadow: -2px -2px 2px 0px #B8CCE0, -1px -1px 0px 0px #FFF, -2px -2px 2px 0px #B8CCE0 inset, -1px -1px 0px 0px #FFF inset;
+}
+
+.input{
+    border-radius: 32px;
+border: 1px solid #B8CCE0;
+background: linear-gradient(135deg, #E5E9ED 0%, #FDFFFF 100%);
+box-shadow: 5px 5px 13px 0px rgba(217, 220, 221, 0.90), -5px -5px 10px 0px rgba(255, 255, 255, 0.90), 5px -5px 10px 0px rgba(217, 220, 221, 0.20), -5px 5px 10px 0px rgba(217, 220, 221, 0.20), -1px -1px 2px 0px rgba(217, 220, 221, 0.50) inset, 1px 1px 2px 0px rgba(255, 255, 255, 0.30) inset;
+}
+.fac{
+    border-radius: 32px;
+border: 1px solid #F1F5F9;
+background: linear-gradient(135deg, #FFF 0%, #FDFFFF 100%);
+box-shadow: 5px 5px 13px 0px rgba(217, 220, 221, 0.90), -5px -5px 10px 0px rgba(255, 255, 255, 0.90), 5px -5px 10px 0px rgba(217, 220, 221, 0.20), -5px 5px 10px 0px rgba(217, 220, 221, 0.20), -1px -1px 2px 0px rgba(217, 220, 221, 0.50) inset, 1px 1px 2px 0px rgba(255, 255, 255, 0.30) inset;
+}
+
+.none{
+    box-shadow: -8px -8px 16px 0px #FFF inset;
+filter: drop-shadow(8px 8px 16px #C9D9E8);
+}

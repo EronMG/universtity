@@ -6,10 +6,11 @@ export const theme = {
         colors: {
             primary: '#7B61FF',
             primaryLow: '#A9A0F3',
+            textSecond: '#6C6993',
             back: '#ECF2F9',
         },
         fontFamily: {
-            nunito: ["Nunito", "sans-serif"],
+            nuni: ["Nunito", "sans-serif"],
         },
     },
     screens: {
