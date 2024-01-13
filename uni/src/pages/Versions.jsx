@@ -1,3 +1,4 @@
+import { useCallback, useState } from "react";
 import Caffedra from "../components/Caffedra";
 import "../index.css";
 import styles from "../styles";
@@ -5,6 +6,13 @@ import { BsFiletypeXls } from "react-icons/bs";
 import { FiPlus } from "react-icons/fi";
 
 const Versions = () => {
+  const [activeMain, setActiveMain] = useState({});
+
+  const handleActiveMain = useCallback(
+    (id) => setActiveMain((prevId) => (prevId === id ? null : id)),
+    [setActiveMain]
+  );
+
   const arrVers = [
     {
       id: "1",
@@ -99,7 +107,10 @@ const Versions = () => {
           {arrVers.map((item) => (
             <div
               key={item.id}
-              className="border-b-2 flex pl-[51px] pr-[300px] items-center h-[70px] pt-[15px]"
+              onClick={() => handleActiveMain(item.id)}
+              className={`${
+                activeMain === item.id ? "mainShadow" : ""
+              } border-b-2 flex pl-[51px] pr-[300px] items-center h-[70px] pt-[15px]`}
             >
               <span className={`${styles.textSecond} text-[24px]`}>
                 {item.name}
