@@ -39,6 +39,11 @@ const AddCafedra = () => {
     return abbreviation;
   }, []);
 
+  const handleCancel2 = useCallback(() => {
+    setNewCafedraName(""); // Очищаем значение поля ввода
+    setSelectedCaffedra(null); // Сбрасываем выбранную кафедру
+  }, [setNewCafedraName]);
+
   if (!isDepartmentVisible) {
     return null;
   }
@@ -58,7 +63,7 @@ const AddCafedra = () => {
           id="name"
           value={newCafedraName}
           onChange={handleInputChange}
-          className="bg-transparent outline-none h-[52px] w-[440px] text-black text-[24px] font-nuni font-[700]"
+          className="bg-transparent outline-none h-[52px] w-[440px] text-black text-[24px] font-nuni font-[700] overflow-hidden"
         />
       ) : (
         <div
@@ -89,7 +94,7 @@ const AddCafedra = () => {
         </h2>
 
         <TfiClose
-          className="text-[30px] text-blue-500 pt-[4px]"
+          className="text-[30px] text-blue-500 pt-[4px] cursor-pointer"
           onClick={hideDepartment}
         />
       </div>
@@ -110,6 +115,7 @@ const AddCafedra = () => {
                   >
                     {item.name}
                   </span>
+
                   <div className="flex gap-[5px]">
                     <span className="text-primary text-[25px]">
                       {item.change}
@@ -140,7 +146,7 @@ const AddCafedra = () => {
           Сохранить кафедру
         </button>
         <button
-          onClick={hideDepartment}
+          onClick={handleCancel2}
           className={`${styles.textSecond} text-[24px] shadowThird w-[296px] px-[20px] py-[11px]`}
         >
           Отмена

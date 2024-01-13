@@ -7,12 +7,13 @@ import { useCallback, useState } from "react";
 
 const ChangeCafedra = () => {
   const {
-    hideDepartment,
+    handleSaveCafedra,
     arrCaf,
     setNewCafedraName,
     newCafedraName,
     isChangeCafedraVisible,
-    handleSaveChanges,
+    handleCancel,
+    hideChange,
   } = useDepartment();
   const [active, setActive] = useState(false);
   const [selectedCaffedra, setSelectedCaffedra] = useState(null);
@@ -30,10 +31,20 @@ const ChangeCafedra = () => {
     setActive((prevActive) => !prevActive);
   }, []);
 
+  const generateAbbreviation = useCallback((fullName) => {
+    const words = fullName.split(/\s|-/); // Разделяем строку по пробелам и дефисам
+    const abbreviation = words.reduce(
+      (abbr, word) => abbr + word.charAt(0).toUpperCase(),
+      "K"
+    );
+    return abbreviation;
+  }, []);
+
   if (!isChangeCafedraVisible) {
     return null;
   }
 
+  const abbreviation = generateAbbreviation(newCafedraName);
   const renderInput = (label, type, additionalClass = "") => (
     <div className={`input flex items-center ${additionalClass}`}>
       <span
@@ -79,8 +90,8 @@ const ChangeCafedra = () => {
         </h2>
 
         <TfiClose
-          className="text-[30px] text-blue-500 pt-[4px]"
-          onClick={hideDepartment}
+          className="text-[30px] text-blue-500 pt-[4px] cursor-pointer"
+          onClick={hideChange}
         />
       </div>
       <div className="flex flex-col gap-[30.66px]">
@@ -91,11 +102,11 @@ const ChangeCafedra = () => {
             <div className="pt-[40px]">
               {arrCaf.map((item) => (
                 <div
+                  onClick={() => handleCaffedraClick(item.name)}
                   key={item.id}
                   className="bg flex items-center justify-end gap-[50px] py-[11px] px-[12px]"
                 >
                   <span
-                    onClick={() => handleCaffedraClick(item.name)}
                     className={`${styles.text} w-[187px] text-center cursor-pointer`}
                   >
                     {item.name}
@@ -124,13 +135,13 @@ const ChangeCafedra = () => {
       </div>
       <div className="pt-[46.04px] flex items-center justify-center gap-[96px]">
         <button
-          onClick={handleSaveChanges}
+          onClick={() => handleSaveCafedra(abbreviation, newCafedraName)}
           className={`${styles.textSecond} text-[24px] shadowThird w-[296px] px-[20px] py-[11px]`}
         >
           Сохранить кафедру
         </button>
         <button
-          onClick={hideDepartment}
+          onClick={handleCancel}
           className={`${styles.textSecond} text-[24px] shadowThird w-[296px] px-[20px] py-[11px]`}
         >
           Отмена

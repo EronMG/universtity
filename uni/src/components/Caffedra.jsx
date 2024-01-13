@@ -1,22 +1,18 @@
-import { useCallback, useState } from "react";
 import styles from "../styles";
 import { IoIosArrowDown } from "react-icons/io";
 import { useDepartment } from "../context/DepartmentContext";
 
 const Caffedra = () => {
-  const [active, setActive] = useState(false);
-  const [selectedCaffedra, setSelectedCaffedra] = useState(null);
-  const { showDepartment, arr, handleDeleteCafedra, handleTextPrimaryClick } =
-    useDepartment();
-
-  const handleActive = useCallback(() => {
-    setActive((prevActive) => !prevActive);
-  }, []);
-
-  const handleCaffedraClick = useCallback((name) => {
-    setSelectedCaffedra(name);
-    setActive((prevActive) => !prevActive);
-  }, []);
+  const {
+    showDepartment,
+    arr,
+    handleDeleteCafedra,
+    handleCaffedraClick,
+    handleActive,
+    active,
+    selectedCaffedra,
+    handleEditCafedra,
+  } = useDepartment();
 
   return (
     <div className="relative">
@@ -35,7 +31,7 @@ const Caffedra = () => {
             {arr.map((item) => (
               <div
                 key={item.id}
-                className="bg flex items-center justify-end gap-[20px] py-[11px] px-[12px]"
+                className="bg flex items-center justify-end gap-[20px] py-[11px] px-[12px] hover:bg-[#A8A3E680]"
               >
                 <span
                   onClick={() => handleCaffedraClick(item.name)}
@@ -45,7 +41,7 @@ const Caffedra = () => {
                 </span>
                 <div className="flex gap-[5px]">
                   <span
-                    onClick={handleTextPrimaryClick}
+                    onClick={() => handleEditCafedra(item)}
                     className="text-primary text-[25px] cursor-pointer"
                   >
                     {item.change}
