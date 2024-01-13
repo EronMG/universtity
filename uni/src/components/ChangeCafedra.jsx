@@ -15,6 +15,7 @@ const ChangeCafedra = () => {
     handleCancel,
     hideChange,
   } = useDepartment();
+
   const [active, setActive] = useState(false);
   const [selectedCaffedra, setSelectedCaffedra] = useState(null);
 
