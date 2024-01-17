@@ -32,20 +32,20 @@ const ChangeCafedra = () => {
     setActive((prevActive) => !prevActive);
   }, []);
 
-  const generateAbbreviation = useCallback((fullName) => {
-    const words = fullName.split(/\s|-/); // Разделяем строку по пробелам и дефисам
-    const abbreviation = words.reduce(
-      (abbr, word) => abbr + word.charAt(0).toUpperCase(),
-      "K"
-    );
-    return abbreviation;
-  }, []);
+  // const generateAbbreviation = useCallback((fullName) => {
+  //   const words = fullName.split(/\s|-/); // Разделяем строку по пробелам и дефисам
+  //   const abbreviation = words.reduce(
+  //     (abbr, word) => abbr + word.charAt(0).toUpperCase(),
+  //     "K"
+  //   );
+  //   return abbreviation;
+  // }, []);
 
   if (!isChangeCafedraVisible) {
     return null;
   }
 
-  const abbreviation = generateAbbreviation(newCafedraName);
+  // const abbreviation = generateAbbreviation(newCafedraName);
   const renderInput = (label, type, additionalClass = "") => (
     <div className={`input flex items-center ${additionalClass}`}>
       <span
@@ -136,7 +136,7 @@ const ChangeCafedra = () => {
       </div>
       <div className="pt-[46.04px] flex items-center justify-center gap-[96px]">
         <button
-          onClick={() => handleSaveCafedra(abbreviation, newCafedraName)}
+          onClick={() => handleSaveCafedra(newCafedraName)} // abbreviation
           className={`${styles.textSecond} text-[24px] shadowThird w-[296px] px-[20px] py-[11px]`}
         >
           Сохранить кафедру

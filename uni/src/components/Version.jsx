@@ -3,13 +3,13 @@ import "../index.css";
 import { Link } from "react-router-dom";
 
 const Version = () => {
-  const { active, selectedCaffedra } = useDepartment();
+  const { selectedCaffedra } = useDepartment();
 
   return (
     <div
-      className={`shadowMain pt-[28px] pb-[23px] pl-[13px] pr-[4px] mt-[30px] ${
-        active ? "" : "opacity-50"
-      } ${selectedCaffedra ? "opacity-100" : ""}`}
+      className={`shadowMain pt-[28px] pb-[23px] pl-[13px] pr-[4px] mt-[30px]  ${
+        selectedCaffedra ? "opacity-100" : "opacity-50"
+      }`}
     >
       <div className="shadowSecond py-[15px] px-[12px]">
         <div className="shadowThird">

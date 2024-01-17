@@ -117,10 +117,11 @@ const Versions = () => {
         </div>
         <div className="border-t-2 mt-[10px] h-[67.6vh]">
           {arrVers.map((item) => (
-            <div
+            <Link
+              to="/list"
               key={item.id}
               onClick={() => handleActiveMain(item.id)}
-              className={`${
+              className={` ${
                 activeMain === item.id ? "mainShadow" : ""
               } border-b-2 flex pr-[50px] items-center h-[70px]  gap-[21px]`}
             >
@@ -150,7 +151,7 @@ const Versions = () => {
               >
                 {item.comments}
               </span>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

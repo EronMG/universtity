@@ -7,6 +7,7 @@ const DepartmentContext = createContext();
 
 const DepartmentProvider = ({ children }) => {
   const [isDepartmentVisible, setIsDepartmentVisible] = useState(false);
+  const [isFacVisible, setIsFacVisible] = useState(false);
   const [isSideBarVisible, setIsSideBarVisible] = useState(true);
   const [newCafedraName, setNewCafedraName] = useState("");
   const [isChangeCafedraVisible, setIsChangeCafedraVisible] = useState(false);
@@ -14,6 +15,8 @@ const DepartmentProvider = ({ children }) => {
   const [active, setActive] = useState(false);
   const [editingCafedra, setEditingCafedra] = useState(null);
   const [selectedYear, setSelectedYear] = useState(null);
+  const [newFacultyName, setNewFacultyName] = useState("");
+  const [newFacultyAbbreviation, setNewFacultyAbbreviation] = useState("");
 
   const [arr, setCafedralist] = useState([
     { id: "1", name: "КВТ", change: <MdModeEdit />, trash: <FaTrashAlt /> },
@@ -90,6 +93,15 @@ const DepartmentProvider = ({ children }) => {
     setIsDepartmentVisible(true);
   }, []);
 
+  const showFac = useCallback(() => {
+    setIsFacVisible(true);
+    setIsDepartmentVisible(false);
+  }, []);
+
+  const hideFac = useCallback(() => {
+    setIsFacVisible(false);
+  }, []);
+
   const handleCancel = useCallback(() => {
     setNewCafedraName(""); // Очищаем значение поля ввода
     setSelectedCaffedra(null); // Сбрасываем выбранную кафедру
@@ -113,6 +125,16 @@ const DepartmentProvider = ({ children }) => {
     [arr]
   );
 
+  const handleDeleteFac = useCallback(
+    (id) => {
+      // Реализуйте удаление кафедры из массива по id
+      const updatedArrCaf = arrCaf.filter((item) => item.id !== id);
+      // Обновите состояние массива
+      setCafedralist(updatedArrCaf);
+    },
+    [arrCaf]
+  );
+
   const handleCaffedraClick = useCallback((name) => {
     setSelectedCaffedra(name);
     setActive((prevActive) => !prevActive);
@@ -127,6 +149,48 @@ const DepartmentProvider = ({ children }) => {
     },
     [setEditingCafedra, setNewCafedraName, setActive]
   );
+  const handleSaveFaculty = useCallback(() => {
+    // Check if both name and abbreviation are provided
+    if (newFacultyName && newFacultyAbbreviation) {
+      console.log("Save Faculty button clicked");
+      // Log values for debugging
+      console.log("Name:", newFacultyName);
+      console.log("Abbreviation:", newFacultyAbbreviation);
+
+      // Create a new faculty object
+      const newFaculty = {
+        id: String(arrCaf.length + 1),
+        name: newFacultyName,
+        abbreviation: newFacultyAbbreviation,
+        change: <MdModeEdit />,
+        trash: <FaTrashAlt />,
+      };
+
+      // Log the new faculty
+      console.log("New Faculty:", newFaculty);
+
+      // Update the state with the new faculty
+      setArrCaf((prevList) => [...prevList, newFaculty]);
+
+      // Clear input values
+      setNewFacultyName("");
+      setNewFacultyAbbreviation("");
+
+      // Log updated arrCaf
+      console.log("Updated arrCaf:", arrCaf);
+
+      // Set visibility flags
+      setIsDepartmentVisible(true);
+      setIsFacVisible(false);
+    }
+  }, [
+    arrCaf,
+    newFacultyName,
+    newFacultyAbbreviation,
+    setArrCaf,
+    setIsDepartmentVisible,
+    setIsFacVisible,
+  ]);
 
   const handleSaveCafedra = useCallback(
     (name) => {
@@ -193,6 +257,15 @@ const DepartmentProvider = ({ children }) => {
         arrYear,
         setArrYear,
         handleYearClick,
+        handleSaveFaculty,
+        newFacultyName,
+        newFacultyAbbreviation,
+        setNewFacultyAbbreviation,
+        setNewFacultyName,
+        showFac,
+        hideFac,
+        isFacVisible,
+        handleDeleteFac,
       }}
     >
       {children}

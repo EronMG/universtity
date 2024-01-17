@@ -4,6 +4,7 @@ import "../index.css";
 import AddCafedra from "./AddCafedra";
 import { IoIosArrowDown } from "react-icons/io";
 import ChangeCafedra from "./ChangeCafedra";
+import AddFaculty from "./AddFaculty";
 
 const MainWindow = () => {
   const { handleToggleSideBar, isSideBarVisible } = useDepartment();
@@ -23,6 +24,7 @@ const MainWindow = () => {
         <img src={main} alt="mainScreen" className="pt-[24px] pl-[30px]" />
         <AddCafedra />
         <ChangeCafedra />
+        <AddFaculty />
       </div>
     </div>
   );

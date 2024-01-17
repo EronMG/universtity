@@ -14,8 +14,8 @@ box-shadow: -2px -2px 2px 0px #B8CCE0, -1px -1px 0px 0px #FFF, -2px -2px 2px 0px
 border-radius: 35px;
 background: #ECF2F9;
 box-shadow: 10px 10px 10px 0px #B8CCE0, -10px -10px 10px 0px rgba(255, 255, 255, 0.50);
-
 }
+
 .sd{
 border-radius: 35px;
 background: #ECF2F9;
@@ -69,8 +69,32 @@ box-shadow: 5px 5px 13px 0px rgba(217, 220, 221, 0.90), -5px -5px 10px 0px rgba(
 box-shadow: -8px -8px 16px 0px #FFF inset;
 filter: drop-shadow(8px 8px 16px #C9D9E8);
 }
+
 .mainShadow{
-    fill: #F1F5F9;
+fill: #F1F5F9;
 box-shadow: 5px 5px 13px 0px #C9D9E8 inset, -5px -5px 10px 0px rgba(255, 255, 255, 0.90) inset, 5px -5px 10px 0px #C9D9E8 inset, -5px 5px 10px 0px rgba(184, 204, 224, 0.30) inset;
 filter: drop-shadow(-1px -1px 2px rgba(184, 204, 224, 0.30)) drop-shadow(1px 1px 2px rgba(255, 255, 255, 0.30));
+}
+
+.purple{
+border-radius: 20px;
+background: #BBB5FF;
+box-shadow: -2px -2px 2px 0px #74719E, -1px -1px 0px 0px #D2CEFF, -2px -2px 2px 0px #A9A0F3 inset, -1px -1px 0px 0px #D2CEFF inset;
+}
+.side{
+    border-radius: 35px;
+background: #ECF2F9;
+box-shadow: 10px 10px 10px 0px #C9D9E8, -10px -10px 10px 0px rgba(255, 255, 255, 0.50);
+}
+
+.button{
+    border-radius: 32px;
+background: #D3D5D8;
+box-shadow: 5px 5px 13px 0px #B8CCE0, -5px -5px 10px 0px rgba(255, 255, 255, 0.90), 5px -5px 10px 0px rgba(184, 204, 224, 0.30), -5px 5px 10px 0px rgba(184, 204, 224, 0.30), -1px -1px 2px 0px #B8CCE0 inset, 1px 1px 2px 0px rgba(255, 255, 255, 0.30) inset;
+}
+.active{
+    border-radius: 32px;
+border: 1px solid #B8CCE0;
+background: #F1F4F4;
+box-shadow: 5px 5px 13px 0px rgba(217, 220, 220, 0.90) inset, -5px -5px 10px 0px rgba(255, 255, 255, 0.90) inset, 5px -5px 10px 0px rgba(217, 220, 220, 0.20) inset, -5px 5px 10px 0px rgba(217, 220, 220, 0.20) inset, -1px -1px 2px 0px rgba(217, 220, 220, 0.50), 1px 1px 2px 0px rgba(255, 255, 255, 0.30);
 }

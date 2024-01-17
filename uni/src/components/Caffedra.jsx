@@ -26,7 +26,7 @@ const Caffedra = () => {
         />
       </button>
       {active && (
-        <div className="shadowThird absolute top-[10px] z-0 px-[7.5px] w-full pb-[15px]">
+        <div className="shadowThird absolute top-[10px] z-40 px-[7.5px] w-full pb-[15px]">
           <div className="pt-[40px]">
             {arr.map((item) => (
               <div

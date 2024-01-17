@@ -6,7 +6,7 @@ import styles from "../styles";
 import allow from "../assets/allow.svg";
 
 const Year = () => {
-  const { active, selectedCaffedra, selectedYear, arrYear, handleYearClick } =
+  const { selectedCaffedra, selectedYear, arrYear, handleYearClick } =
     useDepartment();
 
   const [active1, setActive1] = useState(false);
@@ -27,9 +27,9 @@ const Year = () => {
 
   return (
     <div
-      className={`shadowMain pt-[28px] pb-[23px] pl-[13px] pr-[4px] mt-[24px] ${
-        active ? "" : "opacity-50"
-      } ${selectedCaffedra ? "opacity-100" : ""}`}
+      className={`shadowMain pt-[28px] pb-[23px] pl-[13px] pr-[4px] mt-[24px]  ${
+        selectedCaffedra ? "opacity-100" : "opacity-50"
+      }`}
     >
       <div className="shadowSecond py-[15px] px-[12px]">
         <div

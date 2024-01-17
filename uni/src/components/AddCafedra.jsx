@@ -13,6 +13,8 @@ const AddCafedra = () => {
     arrCaf,
     setNewCafedraName,
     newCafedraName,
+    showFac,
+    handleDeleteFac,
   } = useDepartment();
   const [active, setActive] = useState(false);
   const [selectedCaffedra, setSelectedCaffedra] = useState(null);
@@ -120,13 +122,19 @@ const AddCafedra = () => {
                     <span className="text-primary text-[25px]">
                       {item.change}
                     </span>
-                    <span className="text-primaryLow text-[25px]">
+                    <span
+                      onClick={handleDeleteFac(item.id)}
+                      className="text-primaryLow text-[25px]"
+                    >
                       {item.trash}
                     </span>
                   </div>
                 </div>
               ))}
-              <div className="flex flex-col items-center justify-center cursor-pointer">
+              <div
+                onClick={showFac}
+                className="flex flex-col items-center justify-center cursor-pointer pt-[15px]"
+              >
                 <div className="w-[54px] h-[54px] rounded-full bg-white flex items-center justify-center text-[24px]">
                   +
                 </div>
