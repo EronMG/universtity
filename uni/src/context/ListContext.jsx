@@ -9,6 +9,7 @@ const ListProvider = ({ children }) => {
   const [up, setUp] = useState(false);
   const [filter, setFilter] = useState(false);
   const [course, setCourse] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   // eslint-disable-next-line no-unused-vars
   const [arrcourse, setArrcourse] = useState([
     {
@@ -96,6 +97,8 @@ const ListProvider = ({ children }) => {
         arrcourse,
         handleAddDiscipline,
         addLesson,
+        isModalOpen,
+        setIsModalOpen,
       }}
     >
       {children}

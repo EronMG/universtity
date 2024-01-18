@@ -3,10 +3,9 @@ import { PiCloudArrowDownThin } from "react-icons/pi";
 import { IoIosArrowForward } from "react-icons/io";
 import { useList } from "../context/ListContext.jsx";
 import DisciplineForm from "./DisciplineForm.jsx";
-import { useState } from "react";
 const ListSideBar = () => {
-  const { zap, handleZap, up, handleUp, lessons } = useList();
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { zap, handleZap, up, handleUp, lessons, isModalOpen, setIsModalOpen } =
+    useList();
 
   const handleAddDisciplineClick = (disciplineData) => {
     const newDiscipline = {
