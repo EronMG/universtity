@@ -5,6 +5,7 @@ import Versions from "./pages/Versions";
 import { DepartmentProvider } from "./context/DepartmentContext";
 import List from "./pages/List";
 import { ListProvider } from "./context/ListContext";
+import YourParentComponent from "./components/DisciplineForm";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
             <Route path="/" element={<Main />} />
             <Route path="/versions" element={<Versions />} />
             <Route path="/list" element={<List />} />
+            <Route path="/addList" element={<YourParentComponent />} />
           </Routes>
         </BrowserRouter>
       </DepartmentProvider>

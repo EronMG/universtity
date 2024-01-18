@@ -2,8 +2,22 @@ import "../index.css";
 import { PiCloudArrowDownThin } from "react-icons/pi";
 import { IoIosArrowForward } from "react-icons/io";
 import { useList } from "../context/ListContext.jsx";
+import DisciplineForm from "./DisciplineForm.jsx";
+import { useState } from "react";
 const ListSideBar = () => {
-  const { zap, handleZap, up, handleUp } = useList();
+  const { zap, handleZap, up, handleUp, lessons } = useList();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleAddDisciplineClick = (disciplineData) => {
+    const newDiscipline = {
+      id: lessons.length + 1,
+      fac: disciplineData.fac,
+      title: disciplineData.title,
+      course: disciplineData.course,
+      // Add other properties as needed
+    };
+    handleAddDiscipline(newDiscipline);
+  };
 
   const zapButtons = [
     { id: "1", name: "Дисциплина" },
@@ -56,6 +70,16 @@ const ListSideBar = () => {
     },
   ];
 
+  const handleButtonClick = (id) => {
+    if (id === "1") {
+      setIsModalOpen(true);
+    }
+  };
+
+  const handleAddDiscipline = (discipline) => {
+    // Добавьте вашу логику для добавления дисциплины
+    console.log("Добавлена дисциплина:", discipline);
+  };
   return (
     <div className="side pt-[16px] pb-[11px] pl-[8px] pr-[10px] h-full">
       <div className="shadowSecond py-[17px] pr-[20px] pl-[9px] flex flex-col gap-[10px] h-full relative">
@@ -91,11 +115,17 @@ const ListSideBar = () => {
             {zapButtons.map((item) => (
               <button
                 key={item.id}
+                onClick={() => handleButtonClick(item.id)}
                 className="shadowWhite font-nuni font-[700] text-[16px] h-[52px] text-[#6C6993] active:scale-95 duration-300 "
               >
                 {item.name}
               </button>
             ))}
+            <DisciplineForm
+              isOpen={isModalOpen}
+              onRequestClose={() => setIsModalOpen(false)}
+              onAddDiscipline={handleAddDisciplineClick}
+            />
           </div>
         ) : null}
         {up === true ? (

@@ -9,6 +9,7 @@ const ListProvider = ({ children }) => {
   const [up, setUp] = useState(false);
   const [filter, setFilter] = useState(false);
   const [course, setCourse] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [arrcourse, setArrcourse] = useState([
     {
       id: "1",
@@ -24,159 +25,11 @@ const ListProvider = ({ children }) => {
     },
   ]);
   const [activeMain, setActiveMain] = useState({});
-  const [lessons, setLessons] = useState([
-    {
-      id: "1",
-      fac: "ФКТиПМ",
-      name: "Алгебра",
-      code: "02.03.02",
-      title: "ФИИТ",
-      course: "1",
-      lec: "40",
-      lab: "20",
-    },
-    {
-      id: "2",
-      fac: "ФКТиПМ",
-      name: "АиПиС",
-      code: "02.03.02",
-      title: "ФИИТ",
-      course: "3",
-      lec: "10",
-      lab: "10",
-    },
-    {
-      id: "3",
-      fac: "ФКТиПМ",
-      name: "Математическое моделирование",
-      code: "02.03.02",
-      title: "ФИИТ",
-      course: "2",
-      lec: "20",
-      lab: "30",
-    },
-    {
-      id: "4",
-      fac: "ФКТиПМ",
-      name: "Алгебра",
-      code: "02.03.02",
-      title: "ФИИТ",
-      course: "1",
-      lec: "40",
-      lab: "20",
-    },
-    {
-      id: "5",
-      fac: "ФКТиПМ",
-      name: "АиПиС",
-      code: "02.03.02",
-      title: "ФИИТ",
-      course: "3",
-      lec: "10",
-      lab: "10",
-    },
-    {
-      id: "6",
-      fac: "ФКТиПМ",
-      name: "Математическое моделирование",
-      code: "02.03.02",
-      title: "ФИИТ",
-      course: "2",
-      lec: "20",
-      lab: "30",
-    },
-    {
-      id: "7",
-      fac: "ФКТиПМ",
-      name: "Алгебра",
-      code: "02.03.02",
-      title: "ФИИТ",
-      course: "1",
-      lec: "40",
-      lab: "20",
-    },
-    {
-      id: "8",
-      fac: "ФКТиПМ",
-      name: "АиПиС",
-      code: "02.03.02",
-      title: "ФИИТ",
-      course: "3",
-      lec: "10",
-      lab: "10",
-    },
-    {
-      id: "9",
-      fac: "ФКТиПМ",
-      name: "Математическое моделирование",
-      code: "02.03.02",
-      title: "ФИИТ",
-      course: "2",
-      lec: "20",
-      lab: "30",
-    },
-    {
-      id: "10",
-      fac: "ФКТиПМ",
-      name: "Алгебра",
-      code: "02.03.02",
-      title: "ФИИТ",
-      course: "1",
-      lec: "40",
-      lab: "20",
-    },
-    {
-      id: "11",
-      fac: "ФКТиПМ",
-      name: "АиПиС",
-      code: "02.03.02",
-      title: "ФИИТ",
-      course: "3",
-      lec: "10",
-      lab: "10",
-    },
-    {
-      id: "12",
-      fac: "ФКТиПМ",
-      name: "Математическое моделирование",
-      code: "02.03.02",
-      title: "ФИИТ",
-      course: "2",
-      lec: "20",
-      lab: "30",
-    },
-    {
-      id: "13",
-      fac: "ФКТиПМ",
-      name: "Алгебра",
-      code: "02.03.02",
-      title: "ФИИТ",
-      course: "1",
-      lec: "40",
-      lab: "20",
-    },
-    {
-      id: "14",
-      fac: "ФКТиПМ",
-      name: "АиПиС",
-      code: "02.03.02",
-      title: "ФИИТ",
-      course: "3",
-      lec: "10",
-      lab: "10",
-    },
-    {
-      id: "15",
-      fac: "ФКТиПМ",
-      name: "Математическое моделирование",
-      code: "02.03.02",
-      title: "ФИИТ",
-      course: "2",
-      lec: "20",
-      lab: "30",
-    },
-  ]);
+  const [lessons, setLessons] = useState([]);
 
+  const addLesson = (lesson) => {
+    setLessons([...lessons, lesson]);
+  };
   //! Cоздать запись Функицонал
 
   const handleZap = useCallback(() => {
@@ -201,6 +54,10 @@ const ListProvider = ({ children }) => {
     (id) => setActiveMain((prevId) => (prevId === id ? null : id)),
     [setActiveMain]
   );
+
+  const handleAddDiscipline = (newDiscipline) => {
+    setLessons((prevLessons) => [...prevLessons, newDiscipline]);
+  };
 
   // TODO: ADD FUNCTIONAL FOR MAINSCREEN
 
@@ -237,6 +94,8 @@ const ListProvider = ({ children }) => {
         course,
         filter,
         arrcourse,
+        handleAddDiscipline,
+        addLesson,
       }}
     >
       {children}

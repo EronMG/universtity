@@ -123,3 +123,14 @@ box-shadow: 3px 3px 10px 0px #B8CCE0 inset, -3px -3px 10px 0px #C9D9E8 inset;
 background: #ECF2F9;
 box-shadow: -3px -3px 10px 0px rgba(168, 163, 230, 0.90) inset, 3px 3px 10px 0px #A9A0F3 inset;
 }
+
+.modaldiv{
+    border-radius: 30px;
+background: #F1F4F6;
+box-shadow: 5px 5px 13px 0px rgba(217, 220, 221, 0.90) inset, -5px -5px 10px 0px rgba(255, 255, 255, 0.90) inset, 5px -5px 10px 0px rgba(217, 220, 221, 0.20) inset, -5px 5px 10px 0px rgba(217, 220, 221, 0.20) inset, -1px -1px 2px 0px rgba(217, 220, 221, 0.50), 1px 1px 2px 0px rgba(255, 255, 255, 0.30);
+}
+.but{
+    border-radius: 32px;
+background: linear-gradient(135deg, #B1A8FF 0%, #A198E7 100%);
+box-shadow: 3px 3px 8px 0px rgba(101, 96, 146, 0.90), -3px -3px 6px 0px rgba(237, 224, 255, 0.90), 3px -3px 6px 0px rgba(101, 96, 146, 0.20), -3px 3px 6px 0px rgba(101, 96, 146, 0.20), -1px -1px 2px 0px rgba(101, 96, 146, 0.50) inset, 1px 1px 2px 0px rgba(237, 224, 255, 0.30) inset;
+}

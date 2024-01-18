@@ -14,6 +14,7 @@ const ListSubject = () => {
     lec: { width: "24px", "padding-left": "97px" },
     lab: { width: "24px", "padding-left": "120px" },
   };
+
   return (
     <div className="h-[90%] overflow-scroll">
       {lessons.length === 0 ? (
@@ -28,8 +29,9 @@ const ListSubject = () => {
               key={item.id}
               className={`${
                 activeMain === item.id ? "mainShadow" : ""
-              } flex h-[70px] border-t-2 pl-[20px] w-full`}
+              } flex h-[70px] border-t-2 px-[20px] w-full`}
             >
+              {item.title}
               <div className="w-[852px] flex items-center">
                 {Object.keys(item).map(
                   (key) =>
