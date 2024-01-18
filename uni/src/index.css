@@ -1,7 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900&display=swap');
+
 :root {
 background: #ECF2F9;
 }
@@ -103,4 +105,21 @@ box-shadow: 5px 5px 13px 0px rgba(217, 220, 220, 0.90) inset, -5px -5px 10px 0px
     border-radius: 5px;
 background: #F1F5F9;
 box-shadow: 1.5px 1.5px 3px 0px #B8CCE0, -1px -1px 3px 0px #FFF;
+}
+
+.fil{
+    fill: #ECF2F9;
+box-shadow: -3px -3px 10px 0px rgba(184, 204, 224, 0.40) inset, 3px 3px 10px 0px rgba(184, 204, 224, 0.26) inset;
+}
+
+
+.filterm{
+    border-radius: 32px;
+background: #FFF;
+box-shadow: 3px 3px 10px 0px #B8CCE0 inset, -3px -3px 10px 0px #C9D9E8 inset;
+}
+.pur{
+    border-radius: 10px;
+background: #ECF2F9;
+box-shadow: -3px -3px 10px 0px rgba(168, 163, 230, 0.90) inset, 3px 3px 10px 0px #A9A0F3 inset;
 }

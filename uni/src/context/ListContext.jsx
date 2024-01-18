@@ -7,6 +7,22 @@ const ListContext = createContext();
 const ListProvider = ({ children }) => {
   const [zap, setZap] = useState(false);
   const [up, setUp] = useState(false);
+  const [filter, setFilter] = useState(false);
+  const [course, setCourse] = useState(false);
+  const [arrcourse, setArrcourse] = useState([
+    {
+      id: "1",
+      date: "01.02.03",
+    },
+    {
+      id: "2",
+      date: "04.05.13",
+    },
+    {
+      id: "3",
+      date: "02.04.05",
+    },
+  ]);
   const [activeMain, setActiveMain] = useState({});
   const [lessons, setLessons] = useState([
     {
@@ -197,6 +213,14 @@ const ListProvider = ({ children }) => {
   };
 
   //! DELETE
+
+  // ? FILTER
+
+  const handleFilter = useCallback(() => setFilter((prev) => !prev), []);
+  const handleCourse = useCallback(() => setCourse((prev) => !prev), []);
+
+  // ? FILTER
+
   return (
     <ListContext.Provider
       value={{
@@ -208,6 +232,11 @@ const ListProvider = ({ children }) => {
         activeMain,
         handleDelete,
         lessons,
+        handleFilter,
+        handleCourse,
+        course,
+        filter,
+        arrcourse,
       }}
     >
       {children}
