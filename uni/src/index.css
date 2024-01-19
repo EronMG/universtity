@@ -134,3 +134,8 @@ box-shadow: 5px 5px 13px 0px rgba(217, 220, 221, 0.90) inset, -5px -5px 10px 0px
 background: linear-gradient(135deg, #B1A8FF 0%, #A198E7 100%);
 box-shadow: 3px 3px 8px 0px rgba(101, 96, 146, 0.90), -3px -3px 6px 0px rgba(237, 224, 255, 0.90), 3px -3px 6px 0px rgba(101, 96, 146, 0.20), -3px 3px 6px 0px rgba(101, 96, 146, 0.20), -1px -1px 2px 0px rgba(101, 96, 146, 0.50) inset, 1px 1px 2px 0px rgba(237, 224, 255, 0.30) inset;
 }
+
+.side2{
+    background: rgba(255, 255, 255, 0.25);
+box-shadow: -2px -2px 2px 0px #B8CCE0, -1px -1px 0px 0px #FFF, -2px -2px 2px 0px #B8CCE0 inset, -1px -1px 0px 0px #FFF inset;
+}

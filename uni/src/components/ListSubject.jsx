@@ -33,10 +33,10 @@ const ListSubject = () => {
                   {item.title}
                 </span>
                 <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center w-20 pl-3">
-                  02.03.02
+                  {item.direction.date}
                 </span>
                 <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center w-16 pl-16">
-                  ФИИТ
+                  {item.direction.name}
                 </span>
                 <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center w-3 pl-32">
                   {item.course}
