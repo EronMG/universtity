@@ -10,56 +10,32 @@ const AddFaculty = () => {
     newFacultyName,
     newFacultyAbbreviation,
     setNewFacultyAbbreviation,
-    newCafedraName,
     setNewFacultyName,
-    setNewCafedraName,
     isFacVisible,
   } = useDepartment();
-
-  const handleInputChange = (e) => {
-    console.log("Input for department name:", e.target.value);
-    setNewCafedraName(e.target.value);
-  };
-
-  const handleFacultyInputChange = (e) => {
-    console.log("Input for faculty name:", e.target.value);
-    setNewFacultyName(e.target.value);
-  };
 
   if (!isFacVisible) {
     return null;
   }
-
-  const renderInput = (label, type, additionalClass = "") => (
+  const renderInput = (label, type, additionalClass = "", value) => (
     <div className={`input flex items-center ${additionalClass}`}>
       <span
         className={`${styles.textSecond} text-[22px] pl-[11px] w-[300px] border-r-2 h-[51.9px] flex items-center justify-center`}
       >
         {label}
       </span>
-      {type === "text" ? (
-        <input
-          type="text"
-          name="name"
-          id="name"
-          value={type === "text" ? newCafedraName : newFacultyName}
-          onChange={
-            type === "text" ? handleInputChange : handleFacultyInputChange
-          }
-          className="bg-transparent outline-none h-[52px] w-[440px] text-black text-[24px] font-nuni font-[700] overflow-hidden"
-        />
-      ) : (
-        // ... (existing code)
-        // Add the following lines for faculty abbreviation
-        <input
-          type="text"
-          name="abbreviation"
-          id="abbreviation"
-          value={newFacultyAbbreviation}
-          onChange={(e) => setNewFacultyAbbreviation(e.target.value)}
-          className="bg-transparent outline-none h-[52px] w-[440px] text-black text-[24px] font-nuni font-[700] overflow-hidden"
-        />
-      )}
+      <input
+        type="text"
+        name={type === "text" ? "name" : "abbreviation"}
+        id={type === "text" ? "name" : "abbreviation"}
+        value={value}
+        onChange={
+          type === "text"
+            ? (e) => setNewFacultyName(e.target.value)
+            : (e) => setNewFacultyAbbreviation(e.target.value)
+        }
+        className="bg-transparent outline-none h-[52px] w-[440px] text-black text-[24px] font-nuni font-[700] overflow-hidden"
+      />
     </div>
   );
 
@@ -76,23 +52,30 @@ const AddFaculty = () => {
         />
       </div>
       <div className="flex flex-col gap-[30.66px]">
-        {renderInput("Название факультета", "text", "border-l-2")}
         {renderInput(
           "Сокращенное название",
-          "select",
-          "border-r-2 h-[52px] relative"
+          "text",
+          "border-l-2",
+          newFacultyName
+        )}
+
+        {renderInput(
+          "Название Факультета",
+          "abbreviation",
+          "border-r-2 h-[52px] relative",
+          newFacultyAbbreviation
         )}
       </div>
       <div className="pt-[46.04px] flex items-center justify-center gap-[96px]">
         <button
           onClick={handleSaveFaculty}
-          className={`${styles.textSecond} text-[24px] shadowThird w-[296px] px-[20px] py-[11px]`}
+          className={`${styles.textSecond} text-xl shadowThird w-[296px] px-5 py-3`}
         >
-          Сохранить кафедру
+          Сохранить факультет
         </button>
         <button
           //   onClick={handleCancel2}
-          className={`${styles.textSecond} text-[24px] shadowThird w-[296px] px-[20px] py-[11px]`}
+          className={`${styles.textSecond} text-xl shadowThird w-[296px] px-[20px] py-3`}
         >
           Отмена
         </button>

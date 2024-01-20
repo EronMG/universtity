@@ -130,7 +130,7 @@ const DepartmentProvider = ({ children }) => {
       // Реализуйте удаление кафедры из массива по id
       const updatedArrCaf = arrCaf.filter((item) => item.id !== id);
       // Обновите состояние массива
-      setCafedralist(updatedArrCaf);
+      setArrCaf(updatedArrCaf);
     },
     [arrCaf]
   );
@@ -149,7 +149,12 @@ const DepartmentProvider = ({ children }) => {
     },
     [setEditingCafedra, setNewCafedraName, setActive]
   );
+
+  // eslint-disable-next-line no-unused-vars
+  const [newAbbreviation, setNewAbbreviation] = useState("");
+
   const handleSaveFaculty = useCallback(() => {
+    console.log("Save Faculty button clicked");
     // Check if both name and abbreviation are provided
     if (newFacultyName && newFacultyAbbreviation) {
       console.log("Save Faculty button clicked");
@@ -161,7 +166,7 @@ const DepartmentProvider = ({ children }) => {
       const newFaculty = {
         id: String(arrCaf.length + 1),
         name: newFacultyName,
-        abbreviation: newFacultyAbbreviation,
+        abbreviation: newAbbreviation,
         change: <MdModeEdit />,
         trash: <FaTrashAlt />,
       };
@@ -170,7 +175,11 @@ const DepartmentProvider = ({ children }) => {
       console.log("New Faculty:", newFaculty);
 
       // Update the state with the new faculty
-      setArrCaf((prevList) => [...prevList, newFaculty]);
+      setArrCaf((prevList) => {
+        const updatedArrCaf = [...prevList, newFaculty];
+        console.log("Updated arrCaf:", updatedArrCaf);
+        return updatedArrCaf;
+      });
 
       // Clear input values
       setNewFacultyName("");
@@ -190,6 +199,7 @@ const DepartmentProvider = ({ children }) => {
     setArrCaf,
     setIsDepartmentVisible,
     setIsFacVisible,
+    newAbbreviation,
   ]);
 
   const handleSaveCafedra = useCallback(
@@ -266,6 +276,7 @@ const DepartmentProvider = ({ children }) => {
         hideFac,
         isFacVisible,
         handleDeleteFac,
+        newAbbreviation,
       }}
     >
       {children}

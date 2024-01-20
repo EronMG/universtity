@@ -123,7 +123,7 @@ const AddCafedra = () => {
                       {item.change}
                     </span>
                     <span
-                      onClick={handleDeleteFac(item.id)}
+                      onClick={() => handleDeleteFac(item.id)}
                       className="text-primaryLow text-[25px]"
                     >
                       {item.trash}

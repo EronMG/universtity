@@ -24,6 +24,28 @@ const DisciplineForm = ({ isOpen, onRequestClose }) => {
     name: "",
   });
   const [selectedId, setSelectedId] = useState(null);
+  const [controlActive, setControlActive] = useState(false);
+  const arrControl = [
+    {
+      id: "1",
+      name: "Экзамен",
+      tinyName: "(Эк)",
+    },
+    {
+      id: "2",
+      name: "Зачет",
+      tinyName: "(За)",
+    },
+    {
+      id: "3",
+      name: "Курсовая работа",
+      tinyName: "(КР)",
+    },
+  ];
+  const handleControl = useCallback(
+    () => setControlActive((prev) => !prev),
+    []
+  );
 
   const [side, setSide] = useState([
     {
@@ -44,55 +66,73 @@ const DisciplineForm = ({ isOpen, onRequestClose }) => {
   ]);
 
   const handleChoose = useCallback(() => setChoose((prev) => !prev), []);
+  const handleSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+      // Validate that necessary fields are not empty
+      if (
+        !semestr ||
+        !course ||
+        !title ||
+        !disciplineCode ||
+        !lectures ||
+        !labs ||
+        !practicals ||
+        selectedId === null
+      ) {
+        alert("Please fill in all required fields.");
+        return;
+      }
 
-    // Validate that necessary fields are not empty
-    if (
-      !semestr ||
-      !course ||
-      !title ||
-      !disciplineCode ||
-      selectedId === null
-    ) {
-      alert("Please fill in all required fields.");
-      return;
-    }
+      // Add the discipline with entered data and selected direction
+      const newDiscipline = {
+        id: Math.random().toString(),
+        fac,
+        semestr,
+        course,
+        title,
+        disciplineCode,
+        lectures,
+        labs,
+        practicals,
+        direction: selectedDirection, // Include selected direction
+      };
 
-    // Add the discipline with entered data and selected direction
-    const newDiscipline = {
-      id: Math.random().toString(),
-      fac,
-      semestr,
+      // Call the context function to add the discipline
+      handleAddDiscipline(newDiscipline);
+
+      // Clear the form fields
+      setFac("");
+      setSemestr("");
+      setCourse("");
+      setTitle("");
+      setDisciplineCode("");
+      setLectures("");
+      setLabs("");
+      setPracticals("");
+      setSelectedId(null);
+      setSelectedDirection({ date: "", name: "" });
+
+      // Close the modal
+      onRequestClose();
+      console.log(newDiscipline);
+    },
+    [
       course,
-      title,
       disciplineCode,
-      lectures,
+      fac,
+      handleAddDiscipline,
       labs,
+      lectures,
+      onRequestClose,
       practicals,
-      direction: selectedDirection, // Include selected direction
-    };
-
-    // Call the context function to add the discipline
-    handleAddDiscipline(newDiscipline);
-
-    // Clear the form fields
-    setFac("");
-    setSemestr("");
-    setCourse("");
-    setTitle("");
-    setDisciplineCode("");
-    setLectures("");
-    setLabs("");
-    setPracticals("");
-    setSelectedId(null);
-    setSelectedDirection({ date: "", name: "" });
-
-    // Close the modal
-    onRequestClose();
-    console.log(newDiscipline);
-  };
+      selectedDirection,
+      selectedId,
+      semestr,
+      title,
+    ]
+  );
 
   const handleBackClick = () => {
     // Закройте модальное окно при нажатии кнопки "Назад"
@@ -131,7 +171,7 @@ const DisciplineForm = ({ isOpen, onRequestClose }) => {
             Создание записи дисциплины
           </h2>
           <div className="flex gap-14">
-            <div className="modaldiv px-4 py-5 flex flex-col gap-7">
+            <div className="modaldiv px-4 py-5 flex flex-col gap-7 border-[1px] border-gray-400">
               <label className="modaldiv flex h-12 overflow-hidden items-center border-[1px] border-[#B8CCE0]">
                 <span className="text-[#6C6993] text-2xl font-nuni font-bold border-r-2 h-full flex items-center w-[215px] justify-center">
                   Направление
@@ -220,7 +260,7 @@ const DisciplineForm = ({ isOpen, onRequestClose }) => {
                 />
               </label>
             </div>
-            <div className="modaldiv px-4 py-5 flex flex-col gap-7">
+            <div className="modaldiv px-4 py-5 flex flex-col gap-7 border-[1px] border-gray-400">
               <label
                 className={`modaldiv flex h-12 overflow-hidden items-center ${
                   !disciplineCode
@@ -266,7 +306,28 @@ const DisciplineForm = ({ isOpen, onRequestClose }) => {
                 <span className="text-[#6C6993] text-2xl font-nuni font-bold border-r-2 h-full flex items-center w-[215px] justify-center">
                   Тип контроля
                 </span>
-                <div></div>
+                <div
+                  onClick={handleControl}
+                  className="bg-transparent h-full outline-none text-black text-2xl font-nuni font-bold text-center cursor-pointer flex items-center justify-center w-[280px]"
+                >
+                  Выбрать
+                </div>
+                {controlActive && (
+                  <div className="modaldiv absolute  px-4 pb-3 pt-6  flex flex-col gap-3 top-[370px] right-[90px]">
+                    {arrControl.map((item) => (
+                      <div
+                        key={item.id}
+                        className="shadowWhite flex px-2 items-center justify-center gap-4 w-[270px] min-h-10"
+                      >
+                        <div className={`${styles.text} w-[188px] text-center`}>
+                          <span>{item.name}</span>
+                          <span>{item.tinyName}</span>
+                        </div>
+                        <input type="checkbox" name="" id="" />
+                      </div>
+                    ))}
+                  </div>
+                )}
               </label>
             </div>
           </div>
