@@ -4,10 +4,23 @@ import { IoIosArrowForward } from "react-icons/io";
 import { useList } from "../context/ListContext.jsx";
 import DisciplineForm from "./DisciplineForm.jsx";
 import { Link } from "react-router-dom";
+import PracticeForm from "./PracticeForm.jsx";
+import GAIform from "./GAIform.jsx";
 
 const ListSideBar = () => {
-  const { zap, handleZap, up, handleUp, lessons, isModalOpen, setIsModalOpen } =
-    useList();
+  const {
+    zap,
+    handleZap,
+    up,
+    handleUp,
+    lessons,
+    isModalOpen,
+    setIsModalOpen,
+    isPracticeFormOpen,
+    setIsPracticeFormOpen,
+    isGAIFormOpen,
+    setIsGAIFormOpen,
+  } = useList();
 
   const handleAddDisciplineClick = (disciplineData) => {
     const newDiscipline = {
@@ -74,6 +87,12 @@ const ListSideBar = () => {
   const handleButtonClick = (id) => {
     if (id === "1") {
       setIsModalOpen(true);
+    } else if (id === "2") {
+      // Открываем форму практики
+      setIsPracticeFormOpen(true);
+    } else if (id === "3") {
+      // Открываем форму практики
+      setIsGAIFormOpen(true);
     }
   };
 
@@ -128,6 +147,18 @@ const ListSideBar = () => {
                 onRequestClose={() => setIsModalOpen(false)}
                 onAddDiscipline={handleAddDisciplineClick}
               />
+              {isPracticeFormOpen && (
+                <PracticeForm
+                  isOpen={isPracticeFormOpen}
+                  onRequestClose={() => setIsPracticeFormOpen(false)}
+                />
+              )}
+              {isGAIFormOpen && (
+                <GAIform
+                  isOpen={isGAIFormOpen}
+                  onRequestClose={() => setIsGAIFormOpen(false)}
+                />
+              )}
             </div>
           ) : null}
           {up === true ? (
@@ -153,7 +184,7 @@ const ListSideBar = () => {
         </div>
         <Link
           to="/versions"
-          className="shadowWhite font-nuni font-[700] text-2xl h-[52px] text-[#6C6993] active:scale-95 duration-300 flex items-center justify-center "
+          className="shadowWhite font-nuni font-[700] text-2xl h-[42px] text-[#6C6993] active:scale-95 duration-300 flex items-center justify-center "
         >
           Назад
         </Link>

@@ -7,15 +7,13 @@ import styles from "../styles";
 import DirectionForm from "./DirectionForm";
 
 // eslint-disable-next-line react/prop-types
-const DisciplineForm = ({ isOpen, onRequestClose }) => {
+const GAIform = ({ isOpen, onRequestClose }) => {
   const { handleAddDiscipline, getNewId } = useList();
   const [fac, setFac] = useState("");
   const [title, setTitle] = useState("");
   const [course, setCourse] = useState("");
   const [semestr, setSemestr] = useState("");
-  const [lectures, setLectures] = useState("");
-  const [labs, setLabs] = useState("");
-  const [practicals, setPracticals] = useState("");
+  const [practice, setPractice] = useState("");
   const [disciplineCode, setDisciplineCode] = useState("");
   const [choose, setChoose] = useState(false);
   const [isAddingDirection, setIsAddingDirection] = useState(false);
@@ -24,28 +22,6 @@ const DisciplineForm = ({ isOpen, onRequestClose }) => {
     name: "",
   });
   const [selectedId, setSelectedId] = useState(null);
-  const [controlActive, setControlActive] = useState(false);
-  const arrControl = [
-    {
-      id: "1",
-      name: "Экзамен",
-      tinyName: "(Эк)",
-    },
-    {
-      id: "2",
-      name: "Зачет",
-      tinyName: "(За)",
-    },
-    {
-      id: "3",
-      name: "Курсовая работа",
-      tinyName: "(КР)",
-    },
-  ];
-  const handleControl = useCallback(
-    () => setControlActive((prev) => !prev),
-    []
-  );
 
   const [side, setSide] = useState([
     {
@@ -69,22 +45,18 @@ const DisciplineForm = ({ isOpen, onRequestClose }) => {
   const handleSubmit = useCallback(
     (e) => {
       e.preventDefault();
-
       // Validate that necessary fields are not empty
       if (
         !semestr ||
         !course ||
         !title ||
         !disciplineCode ||
-        !lectures ||
-        !labs ||
-        !practicals ||
+        !practice ||
         selectedId === null
       ) {
         alert("Please fill in all required fields.");
         return;
       }
-
       // Add the discipline with entered data and selected direction
       const newDiscipline = {
         id: getNewId(),
@@ -93,27 +65,20 @@ const DisciplineForm = ({ isOpen, onRequestClose }) => {
         course,
         title,
         disciplineCode,
-        lectures,
-        labs,
-        practicals,
+        practice,
         direction: selectedDirection, // Include selected direction
       };
-
       // Call the context function to add the discipline
       handleAddDiscipline(newDiscipline);
-
       // Clear the form fields
       setFac("");
       setSemestr("");
       setCourse("");
       setTitle("");
       setDisciplineCode("");
-      setLectures("");
-      setLabs("");
-      setPracticals("");
+      setPractice("");
       setSelectedId(null);
       setSelectedDirection({ date: "", name: "" });
-
       // Close the modal
       onRequestClose();
       console.log(newDiscipline);
@@ -123,10 +88,8 @@ const DisciplineForm = ({ isOpen, onRequestClose }) => {
       disciplineCode,
       fac,
       handleAddDiscipline,
-      labs,
-      lectures,
+      practice,
       onRequestClose,
-      practicals,
       selectedDirection,
       selectedId,
       semestr,
@@ -169,10 +132,10 @@ const DisciplineForm = ({ isOpen, onRequestClose }) => {
           className="shadowSecond flex flex-col items-center gap-14 px-20 py-16"
         >
           <h2 className="text-[#424242] text-2xl font-nuni font-bold">
-            Создание записи дисциплины
+            Создание записи практики
           </h2>
-          <div className="flex gap-14">
-            <div className="modaldiv px-4 py-5 flex flex-col gap-7 border-[1px] border-gray-400">
+          <div className="flex flex-col items-center gap-24">
+            <div className="modaldiv px-4 py-5 flex flex-col gap-7 border-[1px] border-gray-400 w-fit">
               <label className="modaldiv flex h-12 overflow-hidden items-center border-[1px] border-[#B8CCE0]">
                 <span className="text-[#6C6993] text-2xl font-nuni font-bold border-r-2 h-full flex items-center w-[215px] justify-center">
                   Направление
@@ -241,6 +204,7 @@ const DisciplineForm = ({ isOpen, onRequestClose }) => {
                   className="bg-transparent h-full outline-none text-black text-2xl font-nuni font-bold text-center"
                 />
               </label>
+
               <label
                 className={`modaldiv h-12 flex overflow-hidden items-center border-[1px] ${
                   !course ? "border-[3px] border-[#E98] " : "border-[#B8CCE0]"
@@ -261,140 +225,99 @@ const DisciplineForm = ({ isOpen, onRequestClose }) => {
                 />
               </label>
             </div>
-            <div className="modaldiv px-4 py-5 flex flex-col gap-7 border-[1px] border-gray-400">
-              <label
-                className={`modaldiv flex h-12 overflow-hidden items-center ${
-                  !disciplineCode
-                    ? "border-[3px] border-[#E98] "
-                    : "border-[#B8CCE0]"
-                }`}
-              >
-                <span className="text-[#6C6993] text-2xl font-nuni font-bold border-r-2 h-full flex items-center w-[215px] justify-center">
-                  Код дисциплины
-                </span>
-                <input
-                  type="text"
-                  value={disciplineCode}
-                  onChange={(e) => {
-                    const inputValue = e.target.value.slice(0, 7).toUpperCase(); // Ограничиваем до 7 символов и переводим в заглавные
-                    setDisciplineCode(inputValue);
-                  }}
-                  className="bg-transparent h-full outline-none text-black text-2xl font-nuni font-bold text-center"
-                />
-              </label>
-              <label
-                className={`modaldiv h-12 flex overflow-hidden items-center  border-[1px] ${
-                  !title ? "border-[3px] border-[#E98] " : "border-[#B8CCE0]"
-                }`}
-              >
-                <span className="text-[#6C6993] text-2xl font-nuni font-bold border-r-2 h-full flex items-center w-[215px] justify-center">
-                  Наименование
-                </span>{" "}
-                <input
-                  type="text"
-                  value={title}
-                  onChange={(e) => {
-                    const inputValue = e.target.value.replace(
-                      /[^а-яА-Я\s]/g,
-                      ""
-                    );
-                    setTitle(inputValue);
-                  }}
-                  className="bg-transparent h-full outline-none text-black text-2xl font-nuni font-bold"
-                />
-              </label>
-              <label className="modaldiv h-12 flex overflow-hidden items-center border-[1px] border-[#B8CCE0]">
-                <span className="text-[#6C6993] text-2xl font-nuni font-bold border-r-2 h-full flex items-center w-[215px] justify-center">
-                  Тип контроля
-                </span>
-                <div
-                  onClick={handleControl}
-                  className="bg-transparent h-full outline-none text-black text-2xl font-nuni font-bold text-center cursor-pointer flex items-center justify-center w-[280px]"
+            <div className="flex gap-16 items-center h-[209px]">
+              <div className="modaldiv flex-col flex gap-6 py-7 overflow-hidden items-center border-[1px] border-[#B8CCE0]">
+                <label
+                  className={`modaldiv h-12 flex overflow-hidden items-center  border-[1px] ${
+                    !disciplineCode
+                      ? "border-[3px] border-[#E98] "
+                      : "border-[#B8CCE0]"
+                  }`}
                 >
-                  Выбрать
-                </div>
-                {controlActive && (
-                  <div className="modaldiv absolute  px-4 pb-3 pt-6  flex flex-col gap-3 top-[370px] right-[90px]">
-                    {arrControl.map((item) => (
-                      <div
-                        key={item.id}
-                        className="shadowWhite flex px-2 items-center justify-center gap-4 w-[270px] min-h-10"
-                      >
-                        <div className={`${styles.text} w-[188px] text-center`}>
-                          <span>{item.name}</span>
-                          <span>{item.tinyName}</span>
-                        </div>
-                        <input type="checkbox" name="" id="" />
-                      </div>
-                    ))}
+                  <span className="text-[#6C6993] text-2xl font-nuni font-bold border-r-2 h-full flex items-center w-[215px] justify-center">
+                    Код дисциплины
+                  </span>{" "}
+                  <input
+                    type="text"
+                    value={disciplineCode}
+                    onChange={(e) => {
+                      const inputValue = e.target.value
+                        .slice(0, 7)
+                        .toUpperCase(); // Ограничиваем до 7 символов и переводим в заглавные
+                      setDisciplineCode(inputValue);
+                    }}
+                    className="bg-transparent h-full outline-none text-black text-2xl font-nuni font-bold text-center"
+                  />
+                </label>
+
+                <label
+                  className={`modaldiv h-12 flex overflow-hidden items-center border-[1px] ${
+                    !title ? "border-[3px] border-[#E98] " : "border-[#B8CCE0]"
+                  }`}
+                >
+                  <span className="text-[#6C6993] text-2xl font-nuni font-bold border-r-2 h-full flex items-center w-[215px] justify-center">
+                    Наименование
+                  </span>
+                  <input
+                    type="text"
+                    value={title}
+                    onChange={(e) => {
+                      const inputValue = e.target.value.replace(
+                        /[^а-яА-Я\s]/g,
+                        ""
+                      );
+                      setTitle(inputValue);
+                    }}
+                    className="bg-transparent h-full outline-none text-black text-2xl font-nuni font-bold"
+                  />
+                </label>
+              </div>
+              <div className="w-[369px] h-full flex flex-col justify-between">
+                <label
+                  className={`modaldiv h-12 flex overflow-hidden items-center  border-[1px] ${
+                    !practice
+                      ? "border-[3px] border-[#E98] "
+                      : "border-[#B8CCE0]"
+                  }`}
+                >
+                  <span className="text-[#6C6993] text-2xl font-nuni font-bold border-r-2 h-full flex items-center w-[205px] justify-center">
+                    Практика часы
+                  </span>{" "}
+                  <input
+                    type="text"
+                    value={practice}
+                    onChange={(e) => {
+                      const inputValue = e.target.value
+                        .replace(/\D/g, "")
+                        .slice(0, 3); // Оставляем только цифры и ограничиваем до 3 символов
+                      setPractice(inputValue);
+                    }}
+                    className="bg-transparent h-full w-[100px] outline-none text-black text-2xl font-nuni font-bold text-center"
+                  />
+                </label>
+                <label
+                  className={`modaldiv py-2 flex flex-col overflow-hidden items-center  border-[1px] `}
+                >
+                  <span className="text-[#6C6993] text-2xl font-nuni font-bold border-b-2 h-full flex items-center w-full justify-center">
+                    Часы
+                  </span>
+                  <div className="flex flex-col gap-1">
+                    <div className="flex gap-5">
+                      <span className="text-[#6C6993] text-2xl font-nuni font-bold h-full flex w-[239px] items-center justify-center">
+                        Часы на человека
+                      </span>
+                      <input type="checkbox" name="" id="" />
+                    </div>
+                    <div className="flex gap-5">
+                      <span className="text-[#6C6993] text-2xl font-nuni font-bold h-full flex items-center w-[239px] justify-center">
+                        Часы на группу
+                      </span>
+                      <input type="checkbox" name="" id="" />
+                    </div>
                   </div>
-                )}
-              </label>
+                </label>
+              </div>
             </div>
-          </div>
-          <div className={`flex flex-col gap-6 w-[285px]`}>
-            <label
-              className={`modaldiv h-12 flex overflow-hidden items-center pl-4  border-[1px] ${
-                !lectures ? "border-[3px] border-[#E98] " : "border-[#B8CCE0]"
-              }`}
-            >
-              <span className="text-[#6C6993] text-xl font-nuni font-bold border-r-2 h-full flex items-center min-w-[150px] justify-center pr-2">
-                Лекции
-              </span>
-              <input
-                type="text"
-                value={lectures}
-                onChange={(e) => {
-                  const inputValue = e.target.value
-                    .replace(/\D/g, "")
-                    .slice(0, 3); // Оставляем только цифры и ограничиваем до 3 символов
-                  setLectures(inputValue);
-                }}
-                className="bg-transparent h-full outline-none text-center w-full text-black text-xl font-nuni font-bold"
-              />
-            </label>
-
-            <label
-              className={`modaldiv h-12 flex overflow-hidden items-center  pl-4  border-[1px] ${
-                !labs ? "border-[3px] border-[#E98] " : "border-[#B8CCE0]"
-              }`}
-            >
-              <span className="text-[#6C6993] text-xl font-nuni font-bold border-r-2 h-full flex items-center w-[150px] justify-center pr-2">
-                Лабораторные
-              </span>
-              <input
-                type="text"
-                value={labs}
-                onChange={(e) => {
-                  const inputValue = e.target.value
-                    .replace(/\D/g, "")
-                    .slice(0, 3); // Оставляем только цифры и ограничиваем до 3 символов
-                  setLabs(inputValue);
-                }}
-                className="bg-transparent h-full outline-none text-center w-full text-black text-xl font-nuni font-bold"
-              />
-            </label>
-
-            <label
-              className={`modaldiv h-12 flex overflow-hidden items-center pl-4  border-[1px] ${
-                !practicals ? "border-[3px] border-[#E98] " : "border-[#B8CCE0]"
-              }`}
-            >
-              <span className="text-[#6C6993] text-xl font-nuni font-bold border-r-2 h-full flex items-center w-[150px] justify-center pr-2">
-                Практические
-              </span>
-              <input
-                type="text"
-                value={practicals}
-                onChange={(e) => {
-                  const inputValue = e.target.value
-                    .replace(/\D/g, "")
-                    .slice(0, 3); // Оставляем только цифры и ограничиваем до 3 символов
-                  setPracticals(inputValue);
-                }}
-                className="bg-transparent h-full outline-none text-center w-full text-black text-xl font-nuni font-bold"
-              />
-            </label>
           </div>
           <div className="flex items-end justify-between w-full">
             <button
@@ -422,4 +345,4 @@ const DisciplineForm = ({ isOpen, onRequestClose }) => {
   );
 };
 
-export default DisciplineForm;
+export default GAIform;

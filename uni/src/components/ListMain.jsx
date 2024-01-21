@@ -34,6 +34,18 @@ const ListMain = () => {
       title: "акад часы",
       id: "7",
     },
+    {
+      label: "Рук  курсовой/пр",
+      id: "8",
+    },
+    {
+      label: "Практика",
+      id: "9",
+    },
+    {
+      label: "Рук  фак/кафедр",
+      id: "10",
+    },
   ];
 
   function getButtonStyle(id) {
@@ -52,6 +64,12 @@ const ListMain = () => {
         return "w-[109px]";
       case "7":
         return "w-[109px]";
+      case "8":
+        return "w-[124px]";
+      case "9":
+        return "w-[108px]";
+      case "10":
+        return "w-[122px]";
       default:
         return ""; // Возвращайте пустую строку или другой класс по умолчанию
     }
@@ -64,7 +82,7 @@ const ListMain = () => {
           <div className="flex gap-[11px]">
             {buttons.map((item) => (
               <button
-                className={`shadowSecond flex flex-col items-center justify-center text-primary text-[18px] font-nuni font-[700] h-[55px] ${getButtonStyle(
+                className={`shadowSecond flex flex-col items-center justify-center text-primary text-lg font-nuni font-[700] h-[55px]  ${getButtonStyle(
                   item.id
                 )}`}
                 key={item.id}

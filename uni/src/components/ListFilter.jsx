@@ -6,8 +6,16 @@ import { FaPencil } from "react-icons/fa6";
 import styles from "../styles";
 
 const ListFilter = () => {
-  const { handleFilter, handleCourse, course, filter, arrcourse, isModalOpen } =
-    useList();
+  const {
+    handleFilter,
+    handleCourse,
+    course,
+    filter,
+    arrcourse,
+    isModalOpen,
+    isPracticeFormOpen,
+    isGAIFormOpen,
+  } = useList();
 
   const arrFilter = [
     {
@@ -41,7 +49,11 @@ const ListFilter = () => {
             ? "filterm w-[270px] gap-[25px]"
             : "white w-[158px] gap-[11px]"
         }  h-[41px] justify-center  text-primary text-[16px] font-nuni font-[700] items-center z-20 active:scale-95 duration-300
-        ${isModalOpen === true ? "hidden" : "flex"} `}
+        ${
+          isModalOpen || isPracticeFormOpen || isGAIFormOpen === true
+            ? "hidden"
+            : "flex"
+        } `}
         style={{ position: "relative" }}
       >
         <CiFilter className="text-[22px]" /> Фильтр{" "}

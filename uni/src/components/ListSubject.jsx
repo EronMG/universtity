@@ -25,7 +25,7 @@ const ListSubject = () => {
                 activeMain === item.id ? "mainShadow" : ""
               } flex h-[70px] border-t-2 px-[20px] w-full`}
             >
-              <div className="w-[852px] flex items-center">
+              <div className=" flex items-center">
                 <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center w-24">
                   ФКТиПМ
                 </span>
@@ -47,9 +47,22 @@ const ListSubject = () => {
                 <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center w-6 pl-32">
                   {item.labs}
                 </span>
+                <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center w-6 pl-[115px]">
+                  {item.labs}
+                </span>
+                <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center w-6 pl-[135px]">
+                  {item.practice}
+                </span>
+                <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center w-6 pl-[125px]">
+                  {item.labs}
+                </span>
               </div>
               {activeMain === item.id && (
-                <div className="absolute right-0 -top-12 p-2 flex gap-6">
+                <div
+                  className={`absolute  flex gap-6 ${
+                    item.id === 1 ? "right-0 top-16 p-2" : "right-0 -top-12 p-2"
+                  }`}
+                >
                   <button className="list w-[160px] h-[33px] justify-center text-primary text-[20px] font-nuni font-[700] flex items-center gap-2">
                     Изменить
                     <FaPencil className="text-black text-[16px]" />

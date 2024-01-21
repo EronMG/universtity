@@ -10,6 +10,9 @@ const ListProvider = ({ children }) => {
   const [filter, setFilter] = useState(false);
   const [course, setCourse] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isGAIFormOpen, setIsGAIFormOpen] = useState(false);
+  const [isPracticeFormOpen, setIsPracticeFormOpen] = useState(false);
+
   // eslint-disable-next-line no-unused-vars
   const [arrcourse, setArrcourse] = useState([
     {
@@ -79,6 +82,11 @@ const ListProvider = ({ children }) => {
 
   // ? FILTER
 
+  const getNewId = () => {
+    const maxId = Math.max(...lessons.map((item) => item.id), 0);
+    return maxId + 1;
+  };
+
   return (
     <ListContext.Provider
       value={{
@@ -99,6 +107,11 @@ const ListProvider = ({ children }) => {
         addLesson,
         isModalOpen,
         setIsModalOpen,
+        getNewId,
+        isPracticeFormOpen,
+        setIsPracticeFormOpen,
+        isGAIFormOpen,
+        setIsGAIFormOpen,
       }}
     >
       {children}
