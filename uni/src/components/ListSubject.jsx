@@ -54,15 +54,11 @@ const ListSubject = () => {
                   {item.practice}
                 </span>
                 <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center w-6 pl-[125px]">
-                  {item.labs}
+                  {item.caf}/{item.rucfac}
                 </span>
               </div>
               {activeMain === item.id && (
-                <div
-                  className={`absolute  flex gap-6 ${
-                    item.id === 1 ? "right-0 top-16 p-2" : "right-0 -top-12 p-2"
-                  }`}
-                >
+                <div className={`absolute  flex gap-6 right-0 top-16 p-2`}>
                   <button className="list w-[160px] h-[33px] justify-center text-primary text-[20px] font-nuni font-[700] flex items-center gap-2">
                     Изменить
                     <FaPencil className="text-black text-[16px]" />

@@ -6,6 +6,7 @@ import DisciplineForm from "./DisciplineForm.jsx";
 import { Link } from "react-router-dom";
 import PracticeForm from "./PracticeForm.jsx";
 import GAIform from "./GAIform.jsx";
+import SpecialForm from "./SpecialForm.jsx";
 
 const ListSideBar = () => {
   const {
@@ -20,6 +21,8 @@ const ListSideBar = () => {
     setIsPracticeFormOpen,
     isGAIFormOpen,
     setIsGAIFormOpen,
+    isSpecialFormOpen,
+    setIsSpeacilFormOpen,
   } = useList();
 
   const handleAddDisciplineClick = (disciplineData) => {
@@ -93,6 +96,9 @@ const ListSideBar = () => {
     } else if (id === "3") {
       // Открываем форму практики
       setIsGAIFormOpen(true);
+    } else {
+      // Открываем форму практики
+      setIsSpeacilFormOpen(true);
     }
   };
 
@@ -157,6 +163,12 @@ const ListSideBar = () => {
                 <GAIform
                   isOpen={isGAIFormOpen}
                   onRequestClose={() => setIsGAIFormOpen(false)}
+                />
+              )}
+              {isSpecialFormOpen && (
+                <SpecialForm
+                  isOpen={isSpecialFormOpen}
+                  onRequestClose={() => setIsSpeacilFormOpen(false)}
                 />
               )}
             </div>

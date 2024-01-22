@@ -13,9 +13,9 @@ const GAIform = ({ isOpen, onRequestClose }) => {
   const [title, setTitle] = useState("");
   const [course, setCourse] = useState("");
   const [semestr, setSemestr] = useState("");
-  const [practice, setPractice] = useState("");
-  const [disciplineCode, setDisciplineCode] = useState("");
   const [choose, setChoose] = useState(false);
+  const [ekz, setEkz] = useState("");
+  const [def, setDef] = useState("");
   const [isAddingDirection, setIsAddingDirection] = useState(false);
   const [selectedDirection, setSelectedDirection] = useState({
     date: "",
@@ -46,14 +46,7 @@ const GAIform = ({ isOpen, onRequestClose }) => {
     (e) => {
       e.preventDefault();
       // Validate that necessary fields are not empty
-      if (
-        !semestr ||
-        !course ||
-        !title ||
-        !disciplineCode ||
-        !practice ||
-        selectedId === null
-      ) {
+      if (!semestr || !course || !title || selectedId === null) {
         alert("Please fill in all required fields.");
         return;
       }
@@ -64,8 +57,8 @@ const GAIform = ({ isOpen, onRequestClose }) => {
         semestr,
         course,
         title,
-        disciplineCode,
-        practice,
+        ekz,
+        def,
         direction: selectedDirection, // Include selected direction
       };
       // Call the context function to add the discipline
@@ -75,8 +68,8 @@ const GAIform = ({ isOpen, onRequestClose }) => {
       setSemestr("");
       setCourse("");
       setTitle("");
-      setDisciplineCode("");
-      setPractice("");
+      setEkz("");
+      setDef("");
       setSelectedId(null);
       setSelectedDirection({ date: "", name: "" });
       // Close the modal
@@ -84,17 +77,17 @@ const GAIform = ({ isOpen, onRequestClose }) => {
       console.log(newDiscipline);
     },
     [
-      course,
-      disciplineCode,
-      fac,
-      handleAddDiscipline,
-      practice,
-      onRequestClose,
-      selectedDirection,
-      selectedId,
       semestr,
+      course,
       title,
+      selectedId,
       getNewId,
+      fac,
+      ekz,
+      def,
+      selectedDirection,
+      handleAddDiscipline,
+      onRequestClose,
     ]
   );
 
@@ -129,12 +122,12 @@ const GAIform = ({ isOpen, onRequestClose }) => {
       >
         <form
           onSubmit={handleSubmit}
-          className="shadowSecond flex flex-col items-center gap-14 px-20 py-16"
+          className="shadowSecond flex flex-col items-center gap-5 px-20 py-16"
         >
           <h2 className="text-[#424242] text-2xl font-nuni font-bold">
-            Создание записи практики
+            Создание записи государственной итоговой аттестации
           </h2>
-          <div className="flex flex-col items-center gap-24">
+          <div className="flex flex-col items-center gap-3">
             <div className="modaldiv px-4 py-5 flex flex-col gap-7 border-[1px] border-gray-400 w-fit">
               <label className="modaldiv flex h-12 overflow-hidden items-center border-[1px] border-[#B8CCE0]">
                 <span className="text-[#6C6993] text-2xl font-nuni font-bold border-r-2 h-full flex items-center w-[215px] justify-center">
@@ -225,99 +218,69 @@ const GAIform = ({ isOpen, onRequestClose }) => {
                 />
               </label>
             </div>
-            <div className="flex gap-16 items-center h-[209px]">
-              <div className="modaldiv flex-col flex gap-6 py-7 overflow-hidden items-center border-[1px] border-[#B8CCE0]">
-                <label
-                  className={`modaldiv h-12 flex overflow-hidden items-center  border-[1px] ${
-                    !disciplineCode
-                      ? "border-[3px] border-[#E98] "
-                      : "border-[#B8CCE0]"
-                  }`}
-                >
-                  <span className="text-[#6C6993] text-2xl font-nuni font-bold border-r-2 h-full flex items-center w-[215px] justify-center">
-                    Код дисциплины
-                  </span>{" "}
-                  <input
-                    type="text"
-                    value={disciplineCode}
-                    onChange={(e) => {
-                      const inputValue = e.target.value
-                        .slice(0, 7)
-                        .toUpperCase(); // Ограничиваем до 7 символов и переводим в заглавные
-                      setDisciplineCode(inputValue);
-                    }}
-                    className="bg-transparent h-full outline-none text-black text-2xl font-nuni font-bold text-center"
-                  />
-                </label>
-
-                <label
-                  className={`modaldiv h-12 flex overflow-hidden items-center border-[1px] ${
-                    !title ? "border-[3px] border-[#E98] " : "border-[#B8CCE0]"
-                  }`}
-                >
-                  <span className="text-[#6C6993] text-2xl font-nuni font-bold border-r-2 h-full flex items-center w-[215px] justify-center">
-                    Наименование
-                  </span>
-                  <input
-                    type="text"
-                    value={title}
-                    onChange={(e) => {
-                      const inputValue = e.target.value.replace(
-                        /[^а-яА-Я\s]/g,
-                        ""
-                      );
-                      setTitle(inputValue);
-                    }}
-                    className="bg-transparent h-full outline-none text-black text-2xl font-nuni font-bold"
-                  />
-                </label>
-              </div>
-              <div className="w-[369px] h-full flex flex-col justify-between">
-                <label
-                  className={`modaldiv h-12 flex overflow-hidden items-center  border-[1px] ${
-                    !practice
-                      ? "border-[3px] border-[#E98] "
-                      : "border-[#B8CCE0]"
-                  }`}
-                >
-                  <span className="text-[#6C6993] text-2xl font-nuni font-bold border-r-2 h-full flex items-center w-[205px] justify-center">
-                    Практика часы
-                  </span>{" "}
-                  <input
-                    type="text"
-                    value={practice}
-                    onChange={(e) => {
-                      const inputValue = e.target.value
-                        .replace(/\D/g, "")
-                        .slice(0, 3); // Оставляем только цифры и ограничиваем до 3 символов
-                      setPractice(inputValue);
-                    }}
-                    className="bg-transparent h-full w-[100px] outline-none text-black text-2xl font-nuni font-bold text-center"
-                  />
-                </label>
-                <label
-                  className={`modaldiv py-2 flex flex-col overflow-hidden items-center  border-[1px] `}
-                >
-                  <span className="text-[#6C6993] text-2xl font-nuni font-bold border-b-2 h-full flex items-center w-full justify-center">
-                    Часы
-                  </span>
-                  <div className="flex flex-col gap-1">
-                    <div className="flex gap-5">
-                      <span className="text-[#6C6993] text-2xl font-nuni font-bold h-full flex w-[239px] items-center justify-center">
-                        Часы на человека
-                      </span>
-                      <input type="checkbox" name="" id="" />
-                    </div>
-                    <div className="flex gap-5">
-                      <span className="text-[#6C6993] text-2xl font-nuni font-bold h-full flex items-center w-[239px] justify-center">
-                        Часы на группу
-                      </span>
-                      <input type="checkbox" name="" id="" />
-                    </div>
-                  </div>
-                </label>
-              </div>
+            <div className="modaldiv py-7 px-6 border-[1px] border-gray-400 w-[951px] mt-28">
+              <label
+                className={`modaldiv h-12 flex overflow-hidden items-center  border-[1px] ${
+                  !title ? "border-[3px] border-[#E98] " : "border-[#B8CCE0]"
+                }`}
+              >
+                <span className="text-[#6C6993] text-2xl font-nuni font-bold border-r-2 h-full flex items-center w-[215px] justify-center">
+                  Наименование
+                </span>{" "}
+                <input
+                  type="text"
+                  value={title}
+                  onChange={(e) => {
+                    const inputValue = e.target.value.replace(
+                      /[^а-яА-Я\s]/g,
+                      ""
+                    );
+                    setTitle(inputValue);
+                  }}
+                  className="bg-transparent h-full outline-none text-black text-2xl font-nuni font-bold w-[750px]"
+                />
+              </label>
             </div>
+            <label
+              className={`modaldiv h-12 flex overflow-hidden items-center border-[1px] ${
+                !ekz ? "border-[3px] border-[#E98] " : "border-[#B8CCE0]"
+              } mt-8`}
+            >
+              <span className="text-[#6C6993] text-2xl font-nuni font-bold border-r-2 h-full flex items-center w-[461px] justify-center">
+                Количество членов ГЭК (экзамен)
+              </span>
+              <input
+                type="text"
+                value={ekz}
+                onChange={(e) => {
+                  const inputValue = e.target.value
+                    .replace(/\D/g, "")
+                    .slice(0, 3); // Оставляем только цифры и ограничиваем до 3 символов
+                  setEkz(inputValue);
+                }}
+                className="bg-transparent h-full outline-none text-center w-[153px] text-black text-xl font-nuni font-bold"
+              />
+            </label>
+            <label
+              className={`modaldiv h-12 flex overflow-hidden items-center border-[1px] ${
+                !def ? "border-[3px] border-[#E98] " : "border-[#B8CCE0]"
+              }`}
+            >
+              <span className="text-[#6C6993] text-2xl font-nuni font-bold border-r-2 h-full flex items-center w-[461px] justify-center">
+                Количество членов ГЭК (защита)
+              </span>
+              <input
+                type="text"
+                value={def}
+                onChange={(e) => {
+                  const inputValue = e.target.value
+                    .replace(/\D/g, "")
+                    .slice(0, 3); // Оставляем только цифры и ограничиваем до 3 символов
+                  setDef(inputValue);
+                }}
+                className="bg-transparent h-full outline-none w-[153px] text-center text-black text-xl font-nuni font-bold"
+              />
+            </label>
           </div>
           <div className="flex items-end justify-between w-full">
             <button

@@ -11,6 +11,7 @@ const ListProvider = ({ children }) => {
   const [course, setCourse] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isGAIFormOpen, setIsGAIFormOpen] = useState(false);
+  const [isSpecialFormOpen, setIsSpeacilFormOpen] = useState(false);
   const [isPracticeFormOpen, setIsPracticeFormOpen] = useState(false);
 
   // eslint-disable-next-line no-unused-vars
@@ -112,6 +113,8 @@ const ListProvider = ({ children }) => {
         setIsPracticeFormOpen,
         isGAIFormOpen,
         setIsGAIFormOpen,
+        isSpecialFormOpen,
+        setIsSpeacilFormOpen,
       }}
     >
       {children}
