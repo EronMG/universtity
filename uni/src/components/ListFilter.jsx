@@ -47,7 +47,7 @@ const ListFilter = () => {
         onClick={handleFilter}
         className={`${
           filter === true
-            ? "filterm w-[270px] gap-[25px]"
+            ? "filterm w-[158px] gap-[11px]"
             : "white w-[158px] gap-[11px]"
         }  h-[41px] justify-center  text-primary text-[16px] font-nuni font-[700] items-center z-20 active:scale-95 duration-300
         ${
@@ -64,7 +64,7 @@ const ListFilter = () => {
         <IoIosArrowForward className="text-[22px] rotate-90" />
       </button>
       {filter && (
-        <div className="z-10 shadowWhite absolute -left-[0px] px-[12px] pt-[40px] pb-[20px] w-[270px] -top-[0px]">
+        <div className="z-10 shadowWhite absolute right-[0px] px-[12px] pt-[40px] pb-[20px] w-[270px] -top-[0px]">
           <div className="flex-col flex">
             {arrFilter.map((item) => (
               <div
@@ -77,9 +77,9 @@ const ListFilter = () => {
                   {item.name}
                 </span>
                 <div
-                  onClick={item.id === "1" ? handleCourse : ""}
+                  onClick={item.id === "3" ? handleCourse : ""}
                   className={`fil rounded-[10px] w-[102.2px] flex justify-center items-center h-[30.9px] text-[#74719E] text-[16px] font-nuni font-[700] ${
-                    course === true && item.id === "1" ? "pur" : ""
+                    item.id === "1" ? "pur" : ""
                   } cursor-pointer`}
                 >
                   {item.title}

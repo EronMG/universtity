@@ -5,6 +5,7 @@ import "../index.css";
 import { TbArrowBack } from "react-icons/tb";
 import styles from "../styles";
 import DirectionForm from "./DirectionForm";
+import { CiCircleQuestion } from "react-icons/ci";
 
 // eslint-disable-next-line react/prop-types
 const SpecialForm = ({ isOpen, onRequestClose }) => {
@@ -16,6 +17,7 @@ const SpecialForm = ({ isOpen, onRequestClose }) => {
   const [ekz, setEkz] = useState("");
   const [def, setDef] = useState("");
   const [caf, setCaf] = useState("");
+  const [quest, setQuest] = useState(false);
   const [rucfac, setRucfac] = useState("");
   const [choose, setChoose] = useState(false);
   const [isAddingDirection, setIsAddingDirection] = useState(false);
@@ -127,6 +129,8 @@ const SpecialForm = ({ isOpen, onRequestClose }) => {
     setSide((prevSide) => [...prevSide, newDirection]);
   };
 
+  const handleQuest = useCallback(() => setQuest((prev) => !prev), []);
+
   return (
     <div>
       <Modal
@@ -140,9 +144,49 @@ const SpecialForm = ({ isOpen, onRequestClose }) => {
           onSubmit={handleSubmit}
           className="shadowSecond flex flex-col items-center gap-14 px-20 py-16"
         >
-          <h2 className="text-[#424242] text-2xl font-nuni font-bold">
-            Создание записи специальной дисциплины
-          </h2>
+          <div className="flex justify-between">
+            <h2 className="text-[#424242] text-2xl font-nuni font-bold">
+              Создание записи специальной дисциплины
+            </h2>
+            <CiCircleQuestion
+              className="absolute text-4xl right-[80px] top-12"
+              onClick={handleQuest}
+            />
+          </div>
+          {quest && (
+            <div className="shadowMain absolute top-[240px]  w-[702px] h-[468px] rounded-[35px] z-20 flex flex-col items-center justify-center ">
+              <button className="shadowWhite w-[277px] h-[53px] flex items-center justify-center text-primary text-xl font-nuni font-bold">
+                Справка
+              </button>
+              <div className="flex flex-col gap-6 mt-4 w-[500px]">
+                <span className="text-[#424242] font-nuni font-bold text-base text-center">
+                  Под специальной дисциплиной имеется ввиду понятие, выходящее
+                  за рамки определения дисциплины, практики и государственной
+                  аттестации, к примеру:
+                </span>
+                <span className="text-[#424242] font-nuni font-bold text-base text-center italic">
+                  Работа секретаря ГЭК (гос. экзамен)
+                  <br />
+                  Работа секретаря ГЭК (защита)
+                  <br />
+                  Заведование кафедрой
+                  <br /> Руководство факультетом
+                  <br /> Защита ВКР
+                </span>
+                <span className="text-[#424242] font-nuni font-bold text-base text-center">
+                  Специальные дисциплины не загружаются из УП, а вводятся
+                  вручную.
+                </span>
+              </div>
+              <button
+                onClick={handleQuest}
+                type="button"
+                className="mt-5 shadowWhite flex gap-3 items-center justify-center w-[122px] h-[45px] text-[#74719E] text-xl font-nuni font-bold"
+              >
+                <TbArrowBack className="text-xl" /> Ок
+              </button>
+            </div>
+          )}
           <div className="flex flex-col items-center gap-24">
             <div className="modaldiv px-4 py-5 flex flex-col gap-7 border-[1px] border-gray-400 w-fit">
               <label
@@ -175,7 +219,7 @@ const SpecialForm = ({ isOpen, onRequestClose }) => {
                   </span>
                   <div
                     onClick={handleChoose}
-                    className=" h-full w-72 flex items-center justify-center"
+                    className=" h-full w-72 flex items-center justify-center z-0"
                   >
                     {selectedId !== null ? (
                       <span className=" h-full shadowWhite text-black text-2xl font-nuni font-bold w-full flex items-center justify-center z-20 gap-5 cursor-pointer">
