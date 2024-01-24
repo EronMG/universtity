@@ -179,7 +179,7 @@ const DisciplineForm = ({ isOpen, onRequestClose }) => {
                 </span>
                 <div
                   onClick={handleChoose}
-                  className=" h-full w-72 flex items-center justify-center"
+                  className=" h-full w-[330px] flex items-center justify-center"
                 >
                   {selectedId !== null ? (
                     <span className=" h-full shadowWhite text-black text-2xl font-nuni font-bold w-full flex items-center justify-center z-20 gap-5 cursor-pointer">
