@@ -166,7 +166,7 @@ const DisciplineForm = ({ isOpen, onRequestClose }) => {
       >
         <form
           onSubmit={handleSubmit}
-          className="shadowSecond flex flex-col items-center gap-14 px-20 py-16"
+          className="shadowSecond flex flex-col items-center gap-14 px-20 py-16 z-50"
         >
           <h2 className="text-[#424242] text-2xl font-nuni font-bold">
             Создание записи дисциплины

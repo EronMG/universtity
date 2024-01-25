@@ -140,3 +140,9 @@ box-shadow: 3px 3px 8px 0px rgba(101, 96, 146, 0.90), -3px -3px 6px 0px rgba(237
 box-shadow: -2px -2px 2px 0px #B8CCE0, -1px -1px 0px 0px #FFF, -2px -2px 2px 0px #B8CCE0 inset, -1px -1px 0px 0px #FFF inset;
 }
 
+
+.tt{
+    border-radius: 32px;
+background: #ECF2F9;
+box-shadow: -2px -2px 2px 0px #B8CCE0, -1px -1px 0px 0px #FFF, -2px -2px 2px 0px #B8CCE0 inset, -1px -1px 0px 0px #FFF inset;
+}

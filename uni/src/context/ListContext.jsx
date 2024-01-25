@@ -9,10 +9,30 @@ const ListProvider = ({ children }) => {
   const [up, setUp] = useState(false);
   const [filter, setFilter] = useState(false);
   const [course, setCourse] = useState(false);
+  const [fac, setFac] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isGAIFormOpen, setIsGAIFormOpen] = useState(false);
   const [isSpecialFormOpen, setIsSpeacilFormOpen] = useState(false);
+  const [isContForm, setIsContForm] = useState(false);
   const [isPracticeFormOpen, setIsPracticeFormOpen] = useState(false);
+
+  const [item, setItem] = useState("1");
+  const buttons = [
+    { id: "1", label: "Список дисциплин", width: 300 },
+    { id: "2", label: "Контингент", width: 300 },
+    { id: "3", label: "Документ “Объемы”", width: 300 },
+  ];
+
+  const upArr = [
+    {
+      id: "1",
+      name: "2023 Фундаментальная инф...",
+    },
+    {
+      id: "2",
+      name: "2023 Фундаментальная инф...",
+    },
+  ];
 
   // eslint-disable-next-line no-unused-vars
   const [arrcourse, setArrcourse] = useState([
@@ -40,6 +60,7 @@ const ListProvider = ({ children }) => {
   const handleZap = useCallback(() => {
     setZap((prev) => !prev);
     setUp(false);
+    setFilter(false);
   }, []);
 
   //! Cоздать запись Функицонал
@@ -49,6 +70,7 @@ const ListProvider = ({ children }) => {
   const handleUp = useCallback(() => {
     setUp((prev) => !prev);
     setZap(false);
+    setFilter(false);
   }, []);
 
   // ! Загруженные из УП Функционал
@@ -78,9 +100,18 @@ const ListProvider = ({ children }) => {
 
   // ? FILTER
 
-  const handleFilter = useCallback(() => setFilter((prev) => !prev), []);
-  const handleCourse = useCallback(() => setCourse((prev) => !prev), []);
-
+  const handleFilter = useCallback(() => {
+    setFilter((prev) => !prev);
+    setUp(false);
+    setZap(false);
+  }, []);
+  const handleCourse = useCallback(() => {
+    setCourse((prev) => !prev), setFac(false);
+  }, []);
+  const handleFac = useCallback(() => {
+    setFac((prev) => !prev);
+    setCourse(false);
+  }, []);
   // ? FILTER
 
   const getNewId = () => {
@@ -115,6 +146,14 @@ const ListProvider = ({ children }) => {
         setIsGAIFormOpen,
         isSpecialFormOpen,
         setIsSpeacilFormOpen,
+        upArr,
+        handleFac,
+        setItem,
+        item,
+        fac,
+        buttons,
+        setIsContForm,
+        isContForm,
       }}
     >
       {children}

@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import PracticeForm from "./PracticeForm.jsx";
 import GAIform from "./GAIform.jsx";
 import SpecialForm from "./SpecialForm.jsx";
+import ListFilter from "./ListFilter.jsx";
 
 const ListSideBar = () => {
   const {
@@ -23,6 +24,7 @@ const ListSideBar = () => {
     setIsGAIFormOpen,
     isSpecialFormOpen,
     setIsSpeacilFormOpen,
+    upArr,
   } = useList();
 
   const handleAddDisciplineClick = (disciplineData) => {
@@ -41,17 +43,6 @@ const ListSideBar = () => {
     { id: "2", name: "Практика" },
     { id: "3", name: "Государственная Итоговая Аттестация" },
     { id: "4", name: "Специальная дисциплина" },
-  ];
-
-  const upArr = [
-    {
-      id: "1",
-      name: "2023 Фундаментальная инф...",
-    },
-    {
-      id: "2",
-      name: "2023 Фундаментальная инф...",
-    },
   ];
 
   const buttons = [
@@ -137,7 +128,7 @@ const ListSideBar = () => {
           ))}
           {zap === true ? (
             <div
-              className={`shadowSecond py-[12px]  px-[7px] flex flex-col gap-[10px] absolute top-[215px] left-0 mx-[15px]`}
+              className={`shadowSecond py-[12px]  px-[7px] flex flex-col gap-[10px] absolute top-[215px] left-0 mx-[15px] z-0`}
             >
               {zapButtons.map((item) => (
                 <button
@@ -193,6 +184,7 @@ const ListSideBar = () => {
               )}
             </div>
           ) : null}
+          <ListFilter />
         </div>
         <Link
           to="/versions"

@@ -1,8 +1,11 @@
+import { useDepartment } from "../context/DepartmentContext";
+import { useList } from "../context/ListContext";
 import "../index.css";
-import ListFilter from "./ListFilter";
 import ListSubject from "./ListSubject";
 
 const ListMain = () => {
+  const { item } = useList();
+  const { isSideBarVisible } = useDepartment();
   const buttons = [
     {
       label: "Факультет",
@@ -78,8 +81,28 @@ const ListMain = () => {
   return (
     <div className="sd py-[14px] px-[12px] w-full mt-[6px]">
       <div className="shadowSecond h-full">
-        <div className="px-[10px] pt-[13px] flex justify-between pb-[10px]">
-          <div className="flex gap-[11px]">
+        {item === "3" ? (
+          <div className="flex justify-between border-b-[1px] border-primary w-[601px] mx-[30px] pt-[10px]">
+            <span className="text-primary font-nuni font-bold text-xl">
+              Название версии
+            </span>
+            <span className="text-[#6C6993] font-nuni font-bold text-xl">
+              Объемы 2022-2023 (август)
+            </span>
+          </div>
+        ) : (
+          ""
+        )}
+        <div
+          className={`px-[10px] pt-[13px] flex justify-between pb-[10px] overflow-hidden ${
+            window.innerWidth === 1920 && isSideBarVisible ? "max-w-full" : ""
+          } ${
+            window.innerWidth === 1440 && isSideBarVisible
+              ? "max-w-[1040px]"
+              : "max-w-[1440px]"
+          }`}
+        >
+          <div className="flex gap-[15px]">
             {buttons.map((item) => (
               <button
                 className={`shadowSecond flex flex-col items-center justify-center text-primary text-lg font-nuni font-[700] h-[55px]  ${getButtonStyle(
@@ -92,7 +115,6 @@ const ListMain = () => {
               </button>
             ))}
           </div>
-          <ListFilter />
         </div>
         <ListSubject />
       </div>
