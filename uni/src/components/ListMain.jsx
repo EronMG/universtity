@@ -1,11 +1,10 @@
-import { useDepartment } from "../context/DepartmentContext";
 import { useList } from "../context/ListContext";
 import "../index.css";
+import ListFilter from "./ListFilter";
 import ListSubject from "./ListSubject";
 
 const ListMain = () => {
   const { item } = useList();
-  const { isSideBarVisible } = useDepartment();
   const buttons = [
     {
       label: "Факультет",
@@ -93,15 +92,7 @@ const ListMain = () => {
         ) : (
           ""
         )}
-        <div
-          className={`px-[10px] pt-[13px] flex justify-between pb-[10px] overflow-hidden ${
-            window.innerWidth === 1920 && isSideBarVisible ? "max-w-full" : ""
-          } ${
-            window.innerWidth === 1440 && isSideBarVisible
-              ? "max-w-[1040px]"
-              : "max-w-[1440px]"
-          }`}
-        >
+        <div className="px-[10px] pt-[13px] flex justify-between pb-[10px] ">
           <div className="flex gap-[15px]">
             {buttons.map((item) => (
               <button
@@ -115,6 +106,7 @@ const ListMain = () => {
               </button>
             ))}
           </div>
+          <ListFilter />
         </div>
         <ListSubject />
       </div>

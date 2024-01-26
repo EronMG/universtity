@@ -53,11 +53,7 @@ const ListSubject = () => {
               key={boot.id}
               className={`${
                 activeMain === boot.id ? "mainShadow" : ""
-              } flex h-[70px] border-t-2 px-[20px] overflow-hidden ${
-                window.innerWidth === 1440 && isSideBarVisible
-                  ? "max-w-[1040px]"
-                  : "max-w-[1440px]"
-              }`}
+              } flex h-[70px] border-t-2 px-[20px] w-full`}
             >
               <div className=" flex items-center">
                 <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center w-24">
@@ -85,7 +81,7 @@ const ListSubject = () => {
                   {boot.labs}
                 </span>
                 <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center w-6 pl-[130px]">
-                  {boot.practice}213
+                  {boot.practice}
                 </span>
                 <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center w-6 pl-[115px]">
                   {boot.caf}/{boot.rucfac}
