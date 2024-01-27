@@ -20,6 +20,8 @@ const ListSubject = () => {
   const [pride, setPride] = useState([
     {
       id: "1",
+      fac: "ФКТиПМ",
+      choose: "01.02.03",
       name: "1",
       students: "96",
       mon: "40",
@@ -32,6 +34,8 @@ const ListSubject = () => {
     },
     {
       id: "2",
+      fac: "ФКТиПМ",
+      choose: "03.02.13",
       name: "2",
       students: "56",
       mon: "40",
@@ -44,6 +48,8 @@ const ListSubject = () => {
     },
     {
       id: "3",
+      fac: "ЮРФАК",
+      choose: "04.07.05",
       name: "3",
       students: "73",
       mon: "40",
@@ -179,6 +185,12 @@ const ListSubject = () => {
                   } flex h-[70px] border-t-2 px-[8px] w-full`}
                 >
                   <div className=" flex items-center gap-[15px]">
+                    <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center w-[122px]">
+                      {boot.fac}
+                    </span>
+                    <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center w-[133px]">
+                      {boot.choose}
+                    </span>
                     <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center w-[95px]">
                       {boot.name}
                     </span>

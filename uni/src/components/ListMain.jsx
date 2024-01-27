@@ -52,6 +52,14 @@ const ListMain = () => {
 
   const buttonsSec = [
     {
+      label: "Факультет",
+      id: "10",
+    },
+    {
+      label: "Направление",
+      id: "11",
+    },
+    {
       label: "Курс",
       id: "1",
     },
@@ -111,6 +119,8 @@ const ListMain = () => {
         return "w-[108px]";
       case "10":
         return "w-[122px]";
+      case "10":
+        return "w-[122px]";
       default:
         return ""; // Возвращайте пустую строку или другой класс по умолчанию
     }
@@ -135,6 +145,10 @@ const ListMain = () => {
         return "w-[124px]";
       case "9":
         return "w-[177px]";
+      case "10":
+        return "w-[122px]";
+      case "11":
+        return "w-[133px]";
       default:
         return ""; // Возвращайте пустую строку или другой класс по умолчанию
     }
