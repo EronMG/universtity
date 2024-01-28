@@ -5,6 +5,7 @@ import { useDepartment } from "../context/DepartmentContext";
 import { IoIosArrowDown } from "react-icons/io";
 import ContForm from "./ContForm";
 import { useState } from "react";
+import ThirdForm from "./ThirdForm";
 const ListSubject = () => {
   const { handleToggleSideBar, isSideBarVisible } = useDepartment();
   const {
@@ -15,6 +16,8 @@ const ListSubject = () => {
     item,
     setIsContForm,
     isContForm,
+    setIsThirdForm,
+    isThirdForm,
   } = useList();
 
   const [pride, setPride] = useState([
@@ -62,6 +65,60 @@ const ListSubject = () => {
     },
   ]);
 
+  // eslint-disable-next-line no-unused-vars
+  const [third, setThird] = useState([
+    {
+      id: "1",
+      fac: "Руководство ВКР бакалавр",
+      choose: "Б1.О.01",
+      name: "ФИИТ",
+      students: "4",
+      mon: "4",
+      dog: "34",
+      potoc: "55",
+    },
+    {
+      id: "2",
+      fac: "Руководство магистерской ...",
+      choose: "Б2.В.02...",
+      name: "ФИИТ",
+      students: "4",
+      mon: "8",
+      dog: "0",
+      potoc: "0",
+    },
+    {
+      id: "3",
+      fac: "Руководство ВКР бакалавр",
+      choose: "Б1.О.01",
+      name: "ФИИТ",
+      students: "4",
+      mon: "4",
+      dog: "34",
+      potoc: "55",
+    },
+    {
+      id: "4",
+      fac: "Руководство ВКР бакалавр",
+      choose: "Б1.О.01",
+      name: "ФИИТ",
+      students: "4",
+      mon: "4",
+      dog: "34",
+      potoc: "55",
+    },
+    {
+      id: "5",
+      fac: "Руководство ВКР бакалавр",
+      choose: "Б1.О.01",
+      name: "ФИИТ",
+      students: "4",
+      mon: "4",
+      dog: "34",
+      potoc: "55",
+    },
+  ]);
+
   const handlePride = (id) => {
     const updatedLessons = pride.filter((item) => item.id !== id);
     setPride(updatedLessons);
@@ -71,11 +128,14 @@ const ListSubject = () => {
     setIsContForm(true);
   };
 
+  const handleButtonClickThird = () => {
+    setIsThirdForm(true);
+  };
   return (
     <div
       className={`h-[90%] ${
         lessons.length === 0 ? "flex items-center justify-center" : ""
-      }`}
+      } w-full`}
     >
       <div
         onClick={handleToggleSideBar}
@@ -93,22 +153,22 @@ const ListSubject = () => {
           } text-black text-[36px]`}
         />
       </div>
-      {item !== "2" && lessons.length === 0 ? (
+      {item !== "2" && lessons.length === 0 && third.length === 0 ? (
         <div className="shadowWhite text-[#424242] text-[14px] font-nuni font-[700] w-[262px] h-[55px] flex items-center justify-center">
           Записей нет
         </div>
       ) : (
         <div className="flex flex-col w-full h-full">
-          {item !== "2"
+          {item === "1"
             ? lessons.map((boot) => (
                 <div
                   onClick={() => handleActiveMain(boot.id)}
                   key={boot.id}
                   className={`${
                     activeMain === boot.id ? "mainShadow" : ""
-                  } flex h-[70px] border-t-2 px-[20px] w-full`}
+                  } flex h-[70px] px-[20px] w-full`}
                 >
-                  <div className=" flex items-center">
+                  <div className=" flex items-center w-full">
                     <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center w-24">
                       ФКТиПМ
                     </span>
@@ -156,18 +216,7 @@ const ListSubject = () => {
                   ) : (
                     ""
                   )}
-                  {activeMain === boot.id && item === "3" ? (
-                    <div className={`absolute  flex gap-6 right-6 top-4 p-2`}>
-                      <button
-                        onClick={() => handleButtonClick()} // Add parentheses to invoke the function
-                        className="justify-center text-primary text-[20px] font-nuni font-[700] flex items-center gap-2"
-                      >
-                        <FaPencil className=" text-[16px] text-primary" />
-                      </button>
-                    </div>
-                  ) : (
-                    ""
-                  )}
+
                   {isContForm && (
                     <ContForm
                       isOpen={isContForm}
@@ -176,13 +225,14 @@ const ListSubject = () => {
                   )}
                 </div>
               ))
-            : pride.map((boot) => (
+            : item === "2"
+            ? pride.map((boot) => (
                 <div
                   onClick={() => handleActiveMain(boot.id)}
                   key={boot.id}
                   className={`${
                     activeMain === boot.id ? "mainShadow" : ""
-                  } flex h-[70px] border-t-2 px-[8px] w-full`}
+                  } flex h-[70px] px-[8px] `}
                 >
                   <div className=" flex items-center gap-[15px]">
                     <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center w-[122px]">
@@ -212,7 +262,9 @@ const ListSubject = () => {
                     <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center  w-[129px]">
                       {boot.pod}
                     </span>
-                    <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center w-[124px]">
+                    <span
+                      className={`font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center w-[124px]`}
+                    >
                       {boot.prof}
                     </span>
                     <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center w-[177px]">
@@ -236,7 +288,67 @@ const ListSubject = () => {
                     ""
                   )}
                 </div>
-              ))}
+              ))
+            : item === "3"
+            ? third.map((boot) => (
+                <div
+                  onClick={() => handleActiveMain(boot.id)}
+                  key={boot.id}
+                  className={`${
+                    activeMain === boot.id ? "mainShadow" : ""
+                  } flex h-[70px] px-[8px] pl-10 `}
+                >
+                  <div className=" flex items-center gap-[15px]">
+                    <div
+                      onClick={handleButtonClickThird}
+                      className={`shadowSecond text-[#6C6993] text-xl font-nuni font-bold flex justify-center items-center w-7 h-7 rounded-full cursor-pointer`}
+                    >
+                      <span className="relative bottom-1"> ...</span>
+                    </div>
+                    <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center w-[169px]">
+                      {boot.fac}
+                    </span>
+                    <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center w-[108px]">
+                      {boot.choose}
+                    </span>
+                    <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center w-[176px]">
+                      {boot.name}
+                    </span>
+                    <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center  w-[80px]">
+                      {boot.students}
+                    </span>
+                    <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center  w-[121px]">
+                      {boot.mon}
+                    </span>
+                    <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center  w-[83px]">
+                      {boot.dog}
+                    </span>
+                    <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center  w-[158px]">
+                      {boot.potoc}
+                    </span>
+                  </div>
+
+                  {isThirdForm && (
+                    <ThirdForm
+                      isOpen={isThirdForm}
+                      onRequestClose={() => setIsThirdForm(false)}
+                    />
+                  )}
+                  {activeMain === boot.id && item === "3" ? (
+                    <div className={`absolute  flex gap-6 right-6 top-4 p-2`}>
+                      <button
+                        onClick={() => handleButtonClick()} // Add parentheses to invoke the function
+                        className="justify-center text-primary text-[20px] font-nuni font-[700] flex items-center gap-2"
+                      >
+                        <FaPencil className=" text-[16px] text-primary" />
+                      </button>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                </div>
+              ))
+            : ""}
         </div>
       )}
     </div>

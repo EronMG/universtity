@@ -28,9 +28,8 @@ box-shadow: 10px 10px 10px 0px #C9D9E8, 0px 4px 4px 0px rgba(255, 255, 255, 0.25
 border-radius: 32px;
 background: #F1F5F9;
 box-shadow: -2px -2px 2px 0px #B8CCE0, -1px -1px 0px 0px #FFF, -2px -2px 2px 0px #B8CCE0 inset, -1px -1px 0px 0px #FFF inset;
-
-
 }
+
 .shadowWhite{
 border-radius: 32px;
 background: #FEFEFF;
@@ -143,6 +142,12 @@ box-shadow: -2px -2px 2px 0px #B8CCE0, -1px -1px 0px 0px #FFF, -2px -2px 2px 0px
 
 .tt{
     border-radius: 32px;
+background: #ECF2F9;
+box-shadow: -2px -2px 2px 0px #B8CCE0, -1px -1px 0px 0px #FFF, -2px -2px 2px 0px #B8CCE0 inset, -1px -1px 0px 0px #FFF inset;
+}
+
+.bb{
+    border-radius: 5px;
 background: #ECF2F9;
 box-shadow: -2px -2px 2px 0px #B8CCE0, -1px -1px 0px 0px #FFF, -2px -2px 2px 0px #B8CCE0 inset, -1px -1px 0px 0px #FFF inset;
 }

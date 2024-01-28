@@ -1,3 +1,4 @@
+import { useDepartment } from "../context/DepartmentContext";
 import { useList } from "../context/ListContext";
 import "../index.css";
 import ListFilter from "./ListFilter";
@@ -5,6 +6,7 @@ import ListSubject from "./ListSubject";
 
 const ListMain = () => {
   const { item } = useList();
+  const { isSideBarVisible } = useDepartment();
   const buttons = [
     {
       label: "Факультет",
@@ -97,65 +99,64 @@ const ListMain = () => {
     },
   ];
 
-  function getButtonStyle(id) {
-    switch (id) {
-      case "1":
-        return "w-[122px]"; // Замените "buttonStyle1" на ваш класс стиля для кнопки с id "1"
-      case "2":
-        return "w-[151px]";
-      case "3":
-        return "w-[108px]";
-      case "4":
-        return "w-[108px]";
-      case "5":
-        return "w-[83px]";
-      case "6":
-        return "w-[109px]";
-      case "7":
-        return "w-[109px]";
-      case "8":
-        return "w-[124px]";
-      case "9":
-        return "w-[108px]";
-      case "10":
-        return "w-[122px]";
-      case "10":
-        return "w-[122px]";
-      default:
-        return ""; // Возвращайте пустую строку или другой класс по умолчанию
-    }
-  }
-  function getButtonStyle2(id) {
-    switch (id) {
-      case "1":
-        return "w-[95px]"; // Замените "buttonStyle1" на ваш класс стиля для кнопки с id "1"
-      case "2":
-        return "w-[182px]";
-      case "3":
-        return "w-[110px]";
-      case "4":
-        return "w-[110px]";
-      case "5":
-        return "w-[150px]";
-      case "6":
-        return "w-[104px]";
-      case "7":
-        return "w-[129px]";
-      case "8":
-        return "w-[124px]";
-      case "9":
-        return "w-[177px]";
-      case "10":
-        return "w-[122px]";
-      case "11":
-        return "w-[133px]";
-      default:
-        return ""; // Возвращайте пустую строку или другой класс по умолчанию
-    }
+  const buttonsThr = [
+    {
+      label: "Дисциплина",
+      id: "1",
+    },
+    {
+      label: "Код",
+      id: "2",
+    },
+    {
+      label: "Специальность",
+      id: "3",
+    },
+    {
+      label: "Курс",
+      id: "4",
+    },
+    {
+      label: "Семестр",
+      id: "5",
+    },
+    {
+      label: "Часы",
+      id: "6",
+    },
+    {
+      label: "Контингент",
+      id: "7",
+    },
+  ];
+  function getButtonStyle(id, version) {
+    const styles = {
+      1: { 1: "w-[122px]", 2: "w-[95px]", 3: "w-[169px]" },
+      2: { 1: "w-[151px]", 2: "w-[182px]", 3: "w-[108px]" },
+      3: { 1: "w-[108px]", 2: "w-[110px]", 3: "w-[176px]" },
+      4: { 1: "w-[108px]", 2: "w-[110px]", 3: "w-[80px]" },
+      5: { 1: "w-[83px]", 2: "w-[150px]", 3: "w-[121px]" },
+      6: { 1: "w-[109px]", 2: "w-[104px]", 3: "w-[83px]" },
+      7: { 1: "w-[109px]", 2: "w-[129px]", 3: "w-[158px]" },
+      8: { 1: "w-[124px]", 2: "w-[124px]", 3: "" },
+      9: { 1: "w-[108px]", 2: "w-[177px]", 3: "" },
+      10: { 1: "w-[122px]", 2: "w-[122px]", 3: "" },
+      11: { 2: "w-[133px]" },
+    };
+
+    return styles[id]?.[version] || "";
   }
   return (
     <div className="sd py-[14px] px-[12px] w-full mt-[6px]">
-      <div className="shadowSecond h-full">
+      <div
+        className={`shadowSecond h-full overflow-scroll   ${
+          window.innerWidth === 1440 && isSideBarVisible === true
+            ? "max-w-[1060px]"
+            : isSideBarVisible === true
+            ? "max-w-[1550px]"
+            : ""
+        }`}
+      >
         {item === "3" ? (
           <div className="flex justify-between border-b-[1px] border-primary w-[601px] mx-[30px] pt-[10px]">
             <span className="text-primary font-nuni font-bold text-xl">
@@ -168,13 +169,18 @@ const ListMain = () => {
         ) : (
           ""
         )}
-        <div className="px-[10px] pt-[13px] flex justify-between pb-[10px] ">
-          <div className="flex gap-[15px]">
-            {item !== "2"
+        <div className={`px-[10px] pt-[13px] flex justify-between pb-[10px]`}>
+          <div
+            className={`flex gap-[15px] px-1 pt-[3px] ${
+              item === "3" ? "pl-10" : ""
+            }`}
+          >
+            {item === "1"
               ? buttons.map((item) => (
                   <button
                     className={`shadowSecond flex flex-col items-center justify-center text-primary text-lg font-nuni font-[700] h-[55px]  ${getButtonStyle(
-                      item.id
+                      item.id,
+                      1
                     )}`}
                     key={item.id}
                   >
@@ -184,16 +190,31 @@ const ListMain = () => {
                     </span>
                   </button>
                 ))
-              : buttonsSec.map((item) => (
+              : item === "2"
+              ? buttonsSec.map((item) => (
                   <button
-                    className={`shadowSecond flex flex-col items-center justify-center text-primary text-lg font-nuni font-[700] h-[55px]  ${getButtonStyle2(
-                      item.id
+                    className={`shrink-0 shadowSecond flex flex-col items-center justify-center text-primary text-lg font-nuni font-[700] h-[55px]  ${getButtonStyle(
+                      item.id,
+                      2
                     )}`}
                     key={item.id}
                   >
                     {item.label}
                   </button>
-                ))}
+                ))
+              : item === "3"
+              ? buttonsThr.map((item) => (
+                  <button
+                    className={`shadowSecond flex flex-col items-center justify-center text-primary text-lg font-nuni font-[700] h-[55px]  ${getButtonStyle(
+                      item.id,
+                      3
+                    )}`}
+                    key={item.id}
+                  >
+                    {item.label}
+                  </button>
+                ))
+              : ""}
           </div>
           <ListFilter />
         </div>
