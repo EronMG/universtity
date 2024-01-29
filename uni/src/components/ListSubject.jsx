@@ -6,6 +6,8 @@ import { IoIosArrowDown } from "react-icons/io";
 import ContForm from "./ContForm";
 import { useState } from "react";
 import ThirdForm from "./ThirdForm";
+import FourthForm from "./FourthForm";
+import ContForms from "./ContingentForm";
 const ListSubject = () => {
   const { handleToggleSideBar, isSideBarVisible } = useDepartment();
   const {
@@ -18,6 +20,14 @@ const ListSubject = () => {
     isContForm,
     setIsThirdForm,
     isThirdForm,
+    setIsFourthForm,
+    isFourthForm,
+    setIsContForms,
+    isContForms,
+    isModalOpen,
+    isPracticeFormOpen,
+    isGAIFormOpen,
+    isSpecialFormOpen,
   } = useList();
 
   const [pride, setPride] = useState([
@@ -124,13 +134,18 @@ const ListSubject = () => {
     setPride(updatedLessons);
   };
 
-  const handleButtonClick = () => {
-    setIsContForm(true);
-  };
-
   const handleButtonClickThird = () => {
     setIsThirdForm(true);
   };
+
+  const handleButtonClickFourth = () => {
+    setIsFourthForm(true);
+  };
+
+  const handleButtonClickForms = () => {
+    setIsContForms(true);
+  };
+
   return (
     <div
       className={`h-[90%] ${
@@ -145,7 +160,18 @@ const ListSubject = () => {
             : "top-[45%] left-[325px]"
         } ${
           lessons.length !== 0 ? "top-[45%]" : ""
-        } rotate-90 text-black absolute w-[64px] h-[64px] rounded-full flex items-center justify-center cursor-pointer active:scale-95 duration-300`}
+        } rotate-90 text-black absolute w-[64px] h-[64px] rounded-full flex items-center justify-center cursor-pointer active:scale-95 duration-300 z-10   ${
+          isModalOpen ||
+          isPracticeFormOpen ||
+          isGAIFormOpen ||
+          isContForm ||
+          isThirdForm ||
+          isFourthForm ||
+          isContForms ||
+          isSpecialFormOpen === true
+            ? "hidden"
+            : "flex"
+        }`}
       >
         <IoIosArrowDown
           className={`${
@@ -296,11 +322,15 @@ const ListSubject = () => {
                   key={boot.id}
                   className={`${
                     activeMain === boot.id ? "mainShadow" : ""
-                  } flex h-[70px] px-[8px] pl-10 `}
+                  } flex h-[70px] px-[8px] `}
                 >
                   <div className=" flex items-center gap-[15px]">
                     <div
-                      onClick={handleButtonClickThird}
+                      onClick={
+                        boot.id === "1"
+                          ? handleButtonClickThird
+                          : handleButtonClickFourth
+                      }
                       className={`shadowSecond text-[#6C6993] text-xl font-nuni font-bold flex justify-center items-center w-7 h-7 rounded-full cursor-pointer`}
                     >
                       <span className="relative bottom-1"> ...</span>
@@ -334,10 +364,22 @@ const ListSubject = () => {
                       onRequestClose={() => setIsThirdForm(false)}
                     />
                   )}
+                  {isFourthForm && (
+                    <FourthForm
+                      isOpen={isFourthForm}
+                      onRequestClose={() => setIsFourthForm(false)}
+                    />
+                  )}
+                  {isContForms && (
+                    <ContForms
+                      isOpen={isContForms}
+                      onRequestClose={() => setIsContForms(false)}
+                    />
+                  )}
                   {activeMain === boot.id && item === "3" ? (
                     <div className={`absolute  flex gap-6 right-6 top-4 p-2`}>
                       <button
-                        onClick={() => handleButtonClick()} // Add parentheses to invoke the function
+                        onClick={() => handleButtonClickForms()} // Add parentheses to invoke the function
                         className="justify-center text-primary text-[20px] font-nuni font-[700] flex items-center gap-2"
                       >
                         <FaPencil className=" text-[16px] text-primary" />

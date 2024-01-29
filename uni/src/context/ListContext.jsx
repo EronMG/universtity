@@ -14,7 +14,9 @@ const ListProvider = ({ children }) => {
   const [isGAIFormOpen, setIsGAIFormOpen] = useState(false);
   const [isSpecialFormOpen, setIsSpeacilFormOpen] = useState(false);
   const [isContForm, setIsContForm] = useState(false);
+  const [isContForms, setIsContForms] = useState(false);
   const [isThirdForm, setIsThirdForm] = useState(false);
+  const [isFourthForm, setIsFourthForm] = useState(false);
   const [isPracticeFormOpen, setIsPracticeFormOpen] = useState(false);
 
   const [item, setItem] = useState("1");
@@ -157,6 +159,10 @@ const ListProvider = ({ children }) => {
         isContForm,
         setIsThirdForm,
         isThirdForm,
+        setIsFourthForm,
+        isFourthForm,
+        setIsContForms,
+        isContForms,
       }}
     >
       {children}

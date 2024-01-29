@@ -50,7 +50,7 @@ const DropdownItem = ({ item, isOpen, handleClick, showArrow, data }) => (
 );
 
 // eslint-disable-next-line react/prop-types
-const ThirdForm = ({ isOpen, onRequestClose }) => {
+const FourthForm = ({ isOpen, onRequestClose }) => {
   const arr = [
     {
       id: "1",
@@ -64,56 +64,56 @@ const ThirdForm = ({ isOpen, onRequestClose }) => {
     },
     {
       id: "3",
-      name: "Консультация перед экзаменом",
+      name: "Аудиторная работа",
+      title: " (Лекции)",
       count: "33",
     },
     {
       id: "4",
-      name: "Руководство ВКР",
+      name: "Аудиторная работа",
+      title: " (Практические)",
       count: "33",
     },
     {
       id: "5",
-      name: "Рецензирование ВКР",
+      name: "Аудиторная работа",
+      title: " (Лабораторные)",
       count: "33",
     },
     {
       id: "6",
-      name: "Нормконтроль ВКР",
+      name: "Консультация перед экзаменом",
       count: "33",
     },
     {
       id: "7",
-      name: "Проверка ВКР на объём заимствования",
+      name: "Зачёт",
       count: "33",
     },
     {
       id: "8",
-      name: "Государственный экзамен",
-      title: "(Количество членов ГЭК)",
+      name: "Устный экзамен",
       count: "33",
     },
     {
       id: "9",
-      name: "Государственный экзамен",
-      title: "(Всего часов)",
+      name: "Письменный экзамен",
       count: "33",
     },
     {
       id: "10",
-      name: "Защита ВКР",
-      title: "(Количество членов ГЭК)",
+      name: "Руководство курсовой работой / проектом",
       count: "33",
     },
     {
       id: "11",
-      name: "Защита ВКР ",
-      title: "(Всего часов)",
+      name: "Всего часов",
+      title: " (руководство курсовой работой / проектом)",
       count: "33",
     },
     {
       id: "12",
-      name: "Руководство факультетом, кафедрой",
+      name: "Практика",
       count: "33",
     },
     {
@@ -185,11 +185,11 @@ const ThirdForm = ({ isOpen, onRequestClose }) => {
                     item={item}
                     isOpen={item.id === "1" ? isOpen1 : isOpen2}
                     handleClick={() => handleClick(item.id)}
-                    showArrow={item.id < 3} // Show arrow only for the first and second items
+                    showArrow={item.id < 6} // Show arrow only for the first and second items
                     data={[
                       // Provide appropriate data here as an array
-                      [36, 24],
-                      [15, 44],
+                      [13, 44],
+                      [0, 44],
                       // ... additional rows
                     ]}
                   />
@@ -203,4 +203,4 @@ const ThirdForm = ({ isOpen, onRequestClose }) => {
   );
 };
 
-export default ThirdForm;
+export default FourthForm;

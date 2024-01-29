@@ -17,12 +17,13 @@ const ListFilter = () => {
     isPracticeFormOpen,
     isGAIFormOpen,
     isSpecialFormOpen,
-    up,
     handleFac,
     fac,
-    zap,
     isContForm,
     item,
+    isThirdForm,
+    isFourthForm,
+    isContForms,
   } = useList();
   const { arrCaf } = useDepartment();
   const arrFilter = [
@@ -73,6 +74,9 @@ const ListFilter = () => {
           isPracticeFormOpen ||
           isGAIFormOpen ||
           isContForm ||
+          isThirdForm ||
+          isFourthForm ||
+          isContForms ||
           isSpecialFormOpen === true
             ? "hidden"
             : "flex"
@@ -173,7 +177,7 @@ const ListFilter = () => {
                   {item.title}
                 </div>
                 {course && item.id === "1" ? (
-                  <div className="shadowThird absolute px-[8px] py-[18.5px] w-[289px] left-[270px] top-[100px]">
+                  <div className="shadowThird absolute px-[8px] py-[18.5px] w-[289px] right-[270px] top-[100px]">
                     {arrcourse.map((item) => (
                       <div
                         key={item.id}
