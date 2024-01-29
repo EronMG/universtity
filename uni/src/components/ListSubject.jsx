@@ -1,15 +1,16 @@
+/* eslint-disable react/prop-types */
 import { useList } from "../context/ListContext";
 import { TfiTrash } from "react-icons/tfi";
-import { FaPencil } from "react-icons/fa6";
 import { useDepartment } from "../context/DepartmentContext";
 import { IoIosArrowDown } from "react-icons/io";
-import ContForm from "./ContForm";
-import { useState } from "react";
-import ThirdForm from "./ThirdForm";
-import FourthForm from "./FourthForm";
-import ContForms from "./ContingentForm";
+import { useCallback, useState } from "react";
+import Third from "./Third";
+import Second from "./Second";
+import First from "./First";
+
 const ListSubject = () => {
   const { handleToggleSideBar, isSideBarVisible } = useDepartment();
+
   const {
     handleActiveMain,
     activeMain,
@@ -129,22 +130,25 @@ const ListSubject = () => {
     },
   ]);
 
-  const handlePride = (id) => {
-    const updatedLessons = pride.filter((item) => item.id !== id);
-    setPride(updatedLessons);
-  };
+  const handlePride = useCallback(
+    (id) => {
+      const updatedLessons = pride.filter((item) => item.id !== id);
+      setPride(updatedLessons);
+    },
+    [pride]
+  );
 
-  const handleButtonClickThird = () => {
+  const handleButtonClickThird = useCallback(() => {
     setIsThirdForm(true);
-  };
+  }, [setIsThirdForm]);
 
-  const handleButtonClickFourth = () => {
+  const handleButtonClickFourth2 = useCallback(() => {
     setIsFourthForm(true);
-  };
+  }, [setIsFourthForm]);
 
-  const handleButtonClickForms = () => {
+  const handleButtonClickForms = useCallback(() => {
     setIsContForms(true);
-  };
+  }, [setIsContForms]);
 
   return (
     <div
@@ -187,208 +191,51 @@ const ListSubject = () => {
         <div className="flex flex-col w-full h-full">
           {item === "1"
             ? lessons.map((boot) => (
-                <div
-                  onClick={() => handleActiveMain(boot.id)}
+                <First
                   key={boot.id}
-                  className={`${
-                    activeMain === boot.id ? "mainShadow" : ""
-                  } flex h-[70px] px-[20px] w-full`}
-                >
-                  <div className=" flex items-center w-full">
-                    <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center w-24">
-                      ФКТиПМ
-                    </span>
-                    <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center w-48 pl-6">
-                      {boot.title}
-                    </span>
-                    <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center w-20 pl-5">
-                      {boot.direction.date}
-                    </span>
-                    <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center w-16 pl-[85px]">
-                      {boot.direction.name}
-                    </span>
-                    <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center w-3 pl-32">
-                      {boot.course}
-                    </span>
-                    <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center w-6 pl-28">
-                      {boot.lectures}
-                    </span>
-                    <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center w-6 pl-32">
-                      {boot.labs}
-                    </span>
-                    <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center w-6 pl-[130px]">
-                      {boot.labs}
-                    </span>
-                    <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center w-6 pl-[130px]">
-                      {boot.practice}
-                    </span>
-                    <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center w-6 pl-[115px]">
-                      {boot.caf}/{boot.rucfac}
-                    </span>
-                  </div>
-                  {activeMain === boot.id && item !== "3" ? (
-                    <div className={`absolute  flex gap-6 right-0 top-16 p-2`}>
-                      <button className="list w-[160px] h-[33px] justify-center text-primary text-[20px] font-nuni font-[700] flex items-center gap-2">
-                        Изменить
-                        <FaPencil className="text-black text-[16px]" />
-                      </button>
-                      <button
-                        onClick={() => handleDelete(boot.id)}
-                        className="list w-[160px] h-[33px] justify-center text-primary text-[20px] font-nuni font-[700] flex items-center gap-2"
-                      >
-                        Удалить <TfiTrash className="text-black text-[16px]" />
-                      </button>
-                    </div>
-                  ) : (
-                    ""
-                  )}
-
-                  {isContForm && (
-                    <ContForm
-                      isOpen={isContForm}
-                      onRequestClose={() => setIsContForm(false)}
-                    />
-                  )}
-                </div>
+                  boot={boot}
+                  handleActiveMain={handleActiveMain}
+                  item={item}
+                  activeMain={activeMain}
+                  TfiTrash={TfiTrash}
+                  isContForm={isContForm}
+                  setIsContForm={setIsContForm}
+                  handleDelete={handleDelete}
+                />
               ))
             : item === "2"
             ? pride.map((boot) => (
-                <div
-                  onClick={() => handleActiveMain(boot.id)}
+                <Second
                   key={boot.id}
-                  className={`${
-                    activeMain === boot.id ? "mainShadow" : ""
-                  } flex h-[70px] px-[8px] `}
-                >
-                  <div className=" flex items-center gap-[15px]">
-                    <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center w-[122px]">
-                      {boot.fac}
-                    </span>
-                    <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center w-[133px]">
-                      {boot.choose}
-                    </span>
-                    <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center w-[95px]">
-                      {boot.name}
-                    </span>
-                    <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center  w-[182px]">
-                      {boot.students}
-                    </span>
-                    <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center  w-[110px]">
-                      {boot.mon}
-                    </span>
-                    <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center  w-[110px]">
-                      {boot.dog}
-                    </span>
-                    <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center  w-[150px]">
-                      {boot.potoc}
-                    </span>
-                    <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center w-[104px]">
-                      {boot.group}
-                    </span>
-                    <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center  w-[129px]">
-                      {boot.pod}
-                    </span>
-                    <span
-                      className={`font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center w-[124px]`}
-                    >
-                      {boot.prof}
-                    </span>
-                    <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center w-[177px]">
-                      {boot.prac}
-                    </span>
-                  </div>
-                  {activeMain === boot.id && item !== "3" ? (
-                    <div className={`absolute  flex gap-6 right-0 top-16 p-2`}>
-                      <button className="list w-[160px] h-[33px] justify-center text-primary text-[20px] font-nuni font-[700] flex items-center gap-2">
-                        Изменить
-                        <FaPencil className="text-black text-[16px]" />
-                      </button>
-                      <button
-                        onClick={() => handlePride(boot.id)}
-                        className="list w-[160px] h-[33px] justify-center text-primary text-[20px] font-nuni font-[700] flex items-center gap-2"
-                      >
-                        Удалить <TfiTrash className="text-black text-[16px]" />
-                      </button>
-                    </div>
-                  ) : (
-                    ""
-                  )}
-                </div>
+                  boot={boot}
+                  handleActiveMain={handleActiveMain}
+                  handlePride={handlePride}
+                  item={item}
+                  activeMain={activeMain}
+                  TfiTrash={TfiTrash}
+                />
               ))
             : item === "3"
             ? third.map((boot) => (
-                <div
-                  onClick={() => handleActiveMain(boot.id)}
+                <Third
                   key={boot.id}
-                  className={`${
-                    activeMain === boot.id ? "mainShadow" : ""
-                  } flex h-[70px] px-[8px] `}
-                >
-                  <div className=" flex items-center gap-[15px]">
-                    <div
-                      onClick={
-                        boot.id === "1"
-                          ? handleButtonClickThird
-                          : handleButtonClickFourth
-                      }
-                      className={`shadowSecond text-[#6C6993] text-xl font-nuni font-bold flex justify-center items-center w-7 h-7 rounded-full cursor-pointer`}
-                    >
-                      <span className="relative bottom-1"> ...</span>
-                    </div>
-                    <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center w-[169px]">
-                      {boot.fac}
-                    </span>
-                    <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center w-[108px]">
-                      {boot.choose}
-                    </span>
-                    <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center w-[176px]">
-                      {boot.name}
-                    </span>
-                    <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center  w-[80px]">
-                      {boot.students}
-                    </span>
-                    <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center  w-[121px]">
-                      {boot.mon}
-                    </span>
-                    <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center  w-[83px]">
-                      {boot.dog}
-                    </span>
-                    <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center  w-[158px]">
-                      {boot.potoc}
-                    </span>
-                  </div>
-
-                  {isThirdForm && (
-                    <ThirdForm
-                      isOpen={isThirdForm}
-                      onRequestClose={() => setIsThirdForm(false)}
-                    />
-                  )}
-                  {isFourthForm && (
-                    <FourthForm
-                      isOpen={isFourthForm}
-                      onRequestClose={() => setIsFourthForm(false)}
-                    />
-                  )}
-                  {isContForms && (
-                    <ContForms
-                      isOpen={isContForms}
-                      onRequestClose={() => setIsContForms(false)}
-                    />
-                  )}
-                  {activeMain === boot.id && item === "3" ? (
-                    <div className={`absolute  flex gap-6 right-6 top-4 p-2`}>
-                      <button
-                        onClick={() => handleButtonClickForms()} // Add parentheses to invoke the function
-                        className="justify-center text-primary text-[20px] font-nuni font-[700] flex items-center gap-2"
-                      >
-                        <FaPencil className=" text-[16px] text-primary" />
-                      </button>
-                    </div>
-                  ) : (
-                    ""
-                  )}
-                </div>
+                  boot={boot}
+                  handleActiveMain={handleActiveMain}
+                  handleButtonClickThird={handleButtonClickThird}
+                  handleButtonClickFourth={handleButtonClickFourth2}
+                  activeMain={activeMain}
+                  isThirdForm={isThirdForm}
+                  setIsThirdForm={setIsThirdForm}
+                  isFourthForm={isFourthForm} // Corrected typo
+                  setIsFourthForm={setIsFourthForm}
+                  handleButtonClickForms={handleButtonClickForms}
+                  item={item}
+                  handleDelete={handleDelete}
+                  handlePride={handlePride}
+                  TfiTrash={TfiTrash}
+                  isContForms={isContForms}
+                  setIsContForms={setIsContForms}
+                />
               ))
             : ""}
         </div>
