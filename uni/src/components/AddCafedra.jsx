@@ -119,12 +119,12 @@ const AddCafedra = () => {
                   </span>
 
                   <div className="flex gap-[5px]">
-                    <span className="text-primary text-[25px]">
+                    <span className="text-primary text-[25px] cursor-pointer">
                       {item.change}
                     </span>
                     <span
                       onClick={() => handleDeleteFac(item.id)}
-                      className="text-primaryLow text-[25px]"
+                      className="text-primaryLow text-[25px] cursor-pointer"
                     >
                       {item.trash}
                     </span>
