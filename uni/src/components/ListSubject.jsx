@@ -194,7 +194,18 @@ const ListSubject = () => {
                 <First
                   key={boot.id}
                   boot={boot}
-                  handleActiveMain={handleActiveMain}
+                  handleActiveMain={
+                    isModalOpen ||
+                    isPracticeFormOpen ||
+                    isGAIFormOpen ||
+                    isContForm ||
+                    isThirdForm ||
+                    isFourthForm ||
+                    isContForms ||
+                    isSpecialFormOpen === true
+                      ? ""
+                      : handleActiveMain
+                  }
                   item={item}
                   activeMain={activeMain}
                   TfiTrash={TfiTrash}
@@ -208,7 +219,18 @@ const ListSubject = () => {
                 <Second
                   key={boot.id}
                   boot={boot}
-                  handleActiveMain={handleActiveMain}
+                  handleActiveMain={
+                    isModalOpen ||
+                    isPracticeFormOpen ||
+                    isGAIFormOpen ||
+                    isContForm ||
+                    isThirdForm ||
+                    isFourthForm ||
+                    isContForms ||
+                    isSpecialFormOpen === true
+                      ? ""
+                      : handleActiveMain
+                  }
                   handlePride={handlePride}
                   item={item}
                   activeMain={activeMain}
@@ -220,7 +242,18 @@ const ListSubject = () => {
                 <Third
                   key={boot.id}
                   boot={boot}
-                  handleActiveMain={handleActiveMain}
+                  handleActiveMain={
+                    isModalOpen ||
+                    isPracticeFormOpen ||
+                    isGAIFormOpen ||
+                    isContForm ||
+                    isThirdForm ||
+                    isFourthForm ||
+                    isContForms ||
+                    isSpecialFormOpen === true
+                      ? ""
+                      : handleActiveMain
+                  }
                   handleButtonClickThird={handleButtonClickThird}
                   handleButtonClickFourth={handleButtonClickFourth2}
                   activeMain={activeMain}
