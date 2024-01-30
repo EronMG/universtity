@@ -69,13 +69,13 @@ const AddCafedra = () => {
         />
       ) : (
         <div
+          onClick={handleActive}
           type="text"
           name="text"
           id="text"
-          className={`fac ml-[5px] outline-none h-[37px] w-[430px] flex gap-[70px] items-center justify-end rounded-[32px] z-50`}
+          className={`fac ml-[5px] outline-none h-[37px] w-[430px] flex gap-[70px] items-center justify-end rounded-[32px] z-50 cursor-pointer`}
         >
           <p
-            onClick={handleActive}
             className={`${styles.textBlack} cursor-pointer w-[245px] text-center`}
           >
             {selectedCaffedra || " Выбрать факультет"}
@@ -108,11 +108,11 @@ const AddCafedra = () => {
             <div className="pt-[40px]">
               {arrCaf.map((item) => (
                 <div
+                  onClick={() => handleCaffedraClick(item.name)}
                   key={item.id}
-                  className="bg flex items-center justify-end gap-[50px] py-[11px] px-[12px]"
+                  className="bg flex items-center justify-end gap-[50px] py-[11px] px-[12px] cursor-pointer"
                 >
                   <span
-                    onClick={() => handleCaffedraClick(item.name)}
                     className={`${styles.text} w-[187px] text-center cursor-pointer`}
                   >
                     {item.name}
