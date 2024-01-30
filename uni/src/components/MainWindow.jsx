@@ -13,7 +13,7 @@ const MainWindow = () => {
       <div className="shadowSecond h-full flex items-center justify-center relative">
         <div
           onClick={handleToggleSideBar}
-          className={`none bg-[#F1F5F9] top-[45%] left-[-50px] rotate-90 text-black absolute w-[64px] h-[64px] rounded-full flex items-center justify-center cursor-pointer active:scale-95 duration-300`}
+          className={`none bg-[#F1F5F9] top-[45%] left-[-30px] rotate-90 text-black absolute w-[64px] h-[64px] rounded-full flex items-center justify-center cursor-pointer active:scale-95 duration-300`}
         >
           <IoIosArrowDown
             className={`${

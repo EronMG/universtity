@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "../index.css";
 import styles from "../styles";
 import { BsFiletypeXls } from "react-icons/bs";
@@ -9,6 +9,21 @@ import { useDepartment } from "../context/DepartmentContext";
 const Versions = () => {
   const [activeMain, setActiveMain] = useState({});
   const { selectedCaffedra } = useDepartment();
+  const [opacity, setOpacity] = useState(0);
+
+  useEffect(() => {
+    const fadeInInterval = setInterval(() => {
+      setOpacity((prevOpacity) => {
+        const newOpacity = prevOpacity + 0.15; // Adjust the increment as needed
+        return newOpacity >= 1 ? 1 : newOpacity;
+      });
+    }, 50); // Adjust the interval as needed
+
+    return () => {
+      clearInterval(fadeInInterval);
+    };
+  }, []);
+
   const handleActiveMain = useCallback(
     (id) => setActiveMain((prevId) => (prevId === id ? null : id)),
     [setActiveMain]
@@ -90,7 +105,10 @@ const Versions = () => {
   }
 
   return (
-    <div className="shadowSecond mx-[29.5px] mt-[35px] mb-[22px]">
+    <div
+      style={{ opacity }}
+      className="shadowSecond mx-[29.5px] mt-[35px] mb-[22px]"
+    >
       <div>
         <div className="flex flex-col gap-[11px] px-[15px] pt-[11px]">
           <div className="max-w-[289px]">

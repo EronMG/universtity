@@ -7,8 +7,10 @@ const SideBar = ({ children }) => {
   return (
     <div
       className={`${
-        isSideBarVisible ? "" : "hidden"
-      } shadow rounded-[32px] bg-[#F1F5F9] px-[13.5px] py-[11px] w-[410px] mt-[17px]`}
+        isSideBarVisible
+          ? "w-[318px] duration-300 opacity-100"
+          : "w-[0px] duration-300 opacity-0"
+      } van shadow rounded-[32px] bg-[#F1F5F9] px-[13.5px] py-[11px] w-[410px] mt-[17px]`}
     >
       {children}
     </div>

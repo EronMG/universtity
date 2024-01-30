@@ -34,7 +34,7 @@ const Year = () => {
       <div className="shadowSecond py-[15px] px-[12px]">
         <div
           onClick={handleActive}
-          className="shadowWhite flex items-center px-[5px] py-[6px] gap-[15px] cursor-pointer"
+          className="shadowWhite flex items-center px-[10px] py-[6px] gap-[15px] cursor-pointer"
         >
           <div className="rounded-full bg-[#F1F5F9] flex items-center justify-center w-[37px] h-[37px] shadow-xl ">
             <IoIosArrowDown
