@@ -43,7 +43,7 @@ const ListFilter = () => {
     {
       id: "2",
       name: "Семестр",
-      title: "",
+      title: "0",
     },
     {
       id: "3",
@@ -63,8 +63,39 @@ const ListFilter = () => {
         />
       ),
     },
+    {
+      id: "5",
+      name: "Бакалвриат Магистратура",
+      title: <IoIosArrowForward className={`text-primary text-[30px]`} />,
+    },
   ];
-  const slice = arrFilter.slice(0, 3);
+  const slice = [
+    {
+      id: "1",
+      name: "Курс",
+      title: "2",
+    },
+    {
+      id: "2",
+      name: "Семестр",
+      title: "0",
+    },
+    {
+      id: "3",
+      name: "Направление",
+      title: (
+        <IoIosArrowForward
+          className={`text-primary text-[30px] ${course && "rotate-180"}`}
+        />
+      ),
+    },
+
+    {
+      id: "5",
+      name: "Бакалвриат Магистратура",
+      title: <IoIosArrowForward className={`text-primary text-[30px]`} />,
+    },
+  ];
   return (
     <div
       className={`relative flex justify-center`}
@@ -114,6 +145,12 @@ const ListFilter = () => {
                     value={inputValue3}
                     onChange={handleInputChange3}
                   />
+                ) : item.id === "2" ? (
+                  <input
+                    className={`fil rounded-[10px] w-[102.2px] flex justify-center items-center h-[30.9px] text-[#74719E] text-xl text-center font-nuni font-[700] cursor-pointer`}
+                    type="text"
+                    placeholder="0"
+                  />
                 ) : (
                   <div
                     onClick={
@@ -123,7 +160,7 @@ const ListFilter = () => {
                         ? handleFac
                         : ""
                     }
-                    className={`fil rounded-[10px] w-[102.2px] flex justify-center items-center h-[30.9px] text-[#74719E] text-[16px] font-nuni font-[700] ${
+                    className={`fil rounded-[10px] min-w-[102.2px] flex justify-center items-center h-[30.9px] text-[#74719E] text-[16px] font-nuni font-[700] ${
                       item.id === "1" ? "pur" : ""
                     } cursor-pointer`}
                   >
@@ -161,9 +198,6 @@ const ListFilter = () => {
                 )}
               </div>
             ))}
-            <span className="text-[#74719E] text-[16px] font-nuni font-[700] max-w-[120px]">
-              Бакалвриат Магистратура
-            </span>
           </div>
         </div>
       )}
@@ -187,6 +221,12 @@ const ListFilter = () => {
                     value={inputValue}
                     onChange={handleInputChange}
                   />
+                ) : item.id === "2" ? (
+                  <input
+                    className={`fil rounded-[10px] w-[102.2px] flex justify-center items-center h-[30.9px] text-[#74719E] text-xl text-center font-nuni font-[700] cursor-pointer`}
+                    type="text"
+                    placeholder="0"
+                  />
                 ) : (
                   <div
                     onClick={
@@ -196,7 +236,7 @@ const ListFilter = () => {
                         ? handleFac
                         : ""
                     }
-                    className={`fil rounded-[10px] w-[102.2px] flex justify-center items-center h-[30.9px] text-[#74719E] text-[16px] font-nuni font-[700] ${
+                    className={`fil rounded-[10px] min-w-[102.2px] flex justify-center items-center h-[30.9px] text-[#74719E] text-[16px] font-nuni font-[700] ${
                       item.id === "1" ? "pur" : ""
                     } cursor-pointer`}
                   >
@@ -234,9 +274,6 @@ const ListFilter = () => {
                 )}
               </div>
             ))}
-            <span className="text-[#74719E] text-[16px] font-nuni font-[700] max-w-[120px]">
-              Бакалвриат Магистратура
-            </span>
           </div>
         </div>
       )}
@@ -277,7 +314,7 @@ const ListFilter = () => {
                         ? handleFac
                         : ""
                     }
-                    className={`fil rounded-[10px] w-[102.2px] flex justify-center items-center h-[30.9px] text-[#74719E] text-[16px] font-nuni font-[700] ${
+                    className={`fil rounded-[10px] min-w-[102.2px] flex justify-center items-center h-[30.9px] text-[#74719E] text-[16px] font-nuni font-[700] ${
                       item.id === "1" ? "pur" : ""
                     } cursor-pointer`}
                   >
@@ -314,9 +351,6 @@ const ListFilter = () => {
                 )}
               </div>
             ))}
-            <span className="text-[#74719E] text-[16px] font-nuni font-[700] max-w-[120px]">
-              Бакалвриат Магистратура
-            </span>
           </div>
         </div>
       )}
