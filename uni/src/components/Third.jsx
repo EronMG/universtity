@@ -48,7 +48,7 @@ const Third = React.memo(
             {boot.name}
           </span>
           <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center  w-[80px]">
-            {boot.students}
+            {boot.course}
           </span>
           <span className="font-nuni font-[700] text-[20px] text-[#424242] h-fit text-center  w-[121px]">
             {boot.mon}

@@ -24,6 +24,12 @@ const ListFilter = () => {
     isThirdForm,
     isFourthForm,
     isContForms,
+    handleInputChange,
+    inputValue,
+    inputValue2,
+    inputValue3,
+    handleInputChange2,
+    handleInputChange3,
   } = useList();
   const { arrCaf } = useDepartment();
   const arrFilter = [
@@ -99,20 +105,32 @@ const ListFilter = () => {
                 >
                   {item.name}
                 </span>
-                <div
-                  onClick={
-                    item.id === "3"
-                      ? handleCourse
-                      : item.id === "4"
-                      ? handleFac
-                      : ""
-                  }
-                  className={`fil rounded-[10px] w-[102.2px] flex justify-center items-center h-[30.9px] text-[#74719E] text-[16px] font-nuni font-[700] ${
-                    item.id === "1" ? "pur" : ""
-                  } cursor-pointer`}
-                >
-                  {item.title}
-                </div>
+                {item.id === "1" ? (
+                  <input
+                    className={`fil rounded-[10px] w-[102.2px] flex justify-center items-center h-[30.9px] text-[#74719E] text-[16px] font-nuni font-[700] ${
+                      item.id === "1" ? "pur" : ""
+                    } cursor-pointer`}
+                    type="text"
+                    value={inputValue}
+                    onChange={handleInputChange}
+                  />
+                ) : (
+                  <div
+                    onClick={
+                      item.id === "3"
+                        ? handleCourse
+                        : item.id === "4"
+                        ? handleFac
+                        : ""
+                    }
+                    className={`fil rounded-[10px] w-[102.2px] flex justify-center items-center h-[30.9px] text-[#74719E] text-[16px] font-nuni font-[700] ${
+                      item.id === "1" ? "pur" : ""
+                    } cursor-pointer`}
+                  >
+                    {item.title}
+                  </div>
+                )}
+
                 {course && item.id === "1" ? (
                   <div className="shadowThird absolute px-[8px] py-[18.5px] w-[289px] -left-[290px] top-[100px]">
                     {arrcourse.map((item) => (
@@ -162,20 +180,31 @@ const ListFilter = () => {
                 >
                   {item.name}
                 </span>
-                <div
-                  onClick={
-                    item.id === "3"
-                      ? handleCourse
-                      : item.id === "4"
-                      ? handleFac
-                      : ""
-                  }
-                  className={`fil rounded-[10px] w-[102.2px] flex justify-center items-center h-[30.9px] text-[#74719E] text-[16px] font-nuni font-[700] ${
-                    item.id === "1" ? "pur" : ""
-                  } cursor-pointer`}
-                >
-                  {item.title}
-                </div>
+                {item.id === "1" ? (
+                  <input
+                    className={`fil rounded-[10px] w-[102.2px] flex justify-center items-center h-[30.9px] text-[#74719E] text-[16px] font-nuni font-[700] ${
+                      item.id === "1" ? "pur" : ""
+                    } cursor-pointer`}
+                    type="text"
+                    value={inputValue2}
+                    onChange={handleInputChange2}
+                  />
+                ) : (
+                  <div
+                    onClick={
+                      item.id === "3"
+                        ? handleCourse
+                        : item.id === "4"
+                        ? handleFac
+                        : ""
+                    }
+                    className={`fil rounded-[10px] w-[102.2px] flex justify-center items-center h-[30.9px] text-[#74719E] text-[16px] font-nuni font-[700] ${
+                      item.id === "1" ? "pur" : ""
+                    } cursor-pointer`}
+                  >
+                    {item.title}
+                  </div>
+                )}
                 {course && item.id === "1" ? (
                   <div className="shadowThird absolute px-[8px] py-[18.5px] w-[289px] right-[270px] top-[100px]">
                     {arrcourse.map((item) => (

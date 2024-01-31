@@ -3,7 +3,7 @@ import { useList } from "../context/ListContext";
 import { TfiTrash } from "react-icons/tfi";
 import { useDepartment } from "../context/DepartmentContext";
 import { IoIosArrowDown } from "react-icons/io";
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import Third from "./Third";
 import Second from "./Second";
 import First from "./First";
@@ -29,6 +29,9 @@ const ListSubject = () => {
     isPracticeFormOpen,
     isGAIFormOpen,
     isSpecialFormOpen,
+    inputValue,
+    inputValue2,
+    inputValue3,
   } = useList();
 
   const [pride, setPride] = useState([
@@ -74,6 +77,34 @@ const ListSubject = () => {
       prof: "3",
       prac: "4",
     },
+    {
+      id: "4",
+      fac: "ЮРФАК",
+      choose: "04.07.05",
+      name: "3",
+      students: "73",
+      mon: "40",
+      dog: "20",
+      potoc: "1",
+      group: "4",
+      pod: "8",
+      prof: "3",
+      prac: "4",
+    },
+    {
+      id: "5",
+      fac: "ЮРФАК",
+      choose: "04.07.05",
+      name: "3",
+      students: "73",
+      mon: "40",
+      dog: "20",
+      potoc: "1",
+      group: "4",
+      pod: "8",
+      prof: "3",
+      prac: "4",
+    },
   ]);
 
   // eslint-disable-next-line no-unused-vars
@@ -83,8 +114,8 @@ const ListSubject = () => {
       fac: "Руководство ВКР бакалавр",
       choose: "Б1.О.01",
       name: "ФИИТ",
-      students: "4",
-      mon: "4",
+      course: "4",
+      mon: "3",
       dog: "34",
       potoc: "55",
     },
@@ -93,7 +124,7 @@ const ListSubject = () => {
       fac: "Руководство магистерской ...",
       choose: "Б2.В.02...",
       name: "ФИИТ",
-      students: "4",
+      course: "1",
       mon: "8",
       dog: "0",
       potoc: "0",
@@ -103,7 +134,7 @@ const ListSubject = () => {
       fac: "Руководство ВКР бакалавр",
       choose: "Б1.О.01",
       name: "ФИИТ",
-      students: "4",
+      course: "5",
       mon: "4",
       dog: "34",
       potoc: "55",
@@ -113,7 +144,7 @@ const ListSubject = () => {
       fac: "Руководство ВКР бакалавр",
       choose: "Б1.О.01",
       name: "ФИИТ",
-      students: "4",
+      course: "3",
       mon: "4",
       dog: "34",
       potoc: "55",
@@ -123,7 +154,7 @@ const ListSubject = () => {
       fac: "Руководство ВКР бакалавр",
       choose: "Б1.О.01",
       name: "ФИИТ",
-      students: "4",
+      course: "4",
       mon: "4",
       dog: "34",
       potoc: "55",
@@ -149,6 +180,31 @@ const ListSubject = () => {
   const handleButtonClickForms = useCallback(() => {
     setIsContForms(true);
   }, [setIsContForms]);
+
+  // Filter the courses based on the specified value
+  const filteredPride = useMemo(() => {
+    return inputValue === "0"
+      ? pride // If inputValue is 0, show the entire array
+      : pride.filter(
+          (course) => parseInt(course.name) === parseInt(inputValue)
+        );
+  }, [inputValue, pride]);
+
+  const filteredLessons = useMemo(() => {
+    return inputValue3 === "0"
+      ? lessons // If inputValue is 0, show the entire array
+      : lessons.filter(
+          (course) => parseInt(course.name) === parseInt(inputValue3)
+        );
+  }, [inputValue3, lessons]);
+
+  const filteredThird = useMemo(() => {
+    return inputValue2 === "0"
+      ? third // If inputValue2 is 0, show the entire array
+      : third.filter(
+          (course) => parseInt(course.course) === parseInt(inputValue2)
+        );
+  }, [inputValue2, third]);
 
   return (
     <div
@@ -215,7 +271,7 @@ const ListSubject = () => {
                 />
               ))
             : item === "2"
-            ? pride.map((boot) => (
+            ? filteredPride.map((boot) => (
                 <Second
                   key={boot.id}
                   boot={boot}
@@ -238,7 +294,7 @@ const ListSubject = () => {
                 />
               ))
             : item === "3"
-            ? third.map((boot) => (
+            ? filteredThird.map((boot) => (
                 <Third
                   key={boot.id}
                   boot={boot}

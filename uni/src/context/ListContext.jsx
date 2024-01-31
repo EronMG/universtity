@@ -122,6 +122,28 @@ const ListProvider = ({ children }) => {
     return maxId + 1;
   };
 
+  const [inputValue, setInputValue] = useState(0);
+
+  const handleInputChange = (event) => {
+    const inputValue = event.target.value.replace(/[^0-9]/g, ""); // Оставляем только цифры
+    const value = Math.min(Number(inputValue), 6); // Ограничиваем значение до 5
+    setInputValue(value.toString());
+  };
+  const [inputValue2, setInputValue2] = useState(0);
+
+  const handleInputChange2 = (event) => {
+    const inputValue = event.target.value.replace(/[^0-9]/g, ""); // Оставляем только цифры
+    const value = Math.min(Number(inputValue), 6); // Ограничиваем значение до 5
+    setInputValue2(value.toString());
+  };
+  const [inputValue3, setInputValue3] = useState(0);
+
+  const handleInputChange3 = (event) => {
+    const inputValue = event.target.value.replace(/[^0-9]/g, ""); // Оставляем только цифры
+    const value = Math.min(Number(inputValue), 6); // Ограничиваем значение до 5
+    setInputValue3(value.toString());
+  };
+
   return (
     <ListContext.Provider
       value={{
@@ -163,6 +185,13 @@ const ListProvider = ({ children }) => {
         isFourthForm,
         setIsContForms,
         isContForms,
+        handleInputChange,
+        inputValue,
+        setInputValue,
+        inputValue2,
+        inputValue3,
+        handleInputChange2,
+        handleInputChange3,
       }}
     >
       {children}
