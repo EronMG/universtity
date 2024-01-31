@@ -30,6 +30,8 @@ const ListFilter = () => {
     inputValue3,
     handleInputChange2,
     handleInputChange3,
+    inputValue4,
+    handleInputChange4,
   } = useList();
   const { arrCaf } = useDepartment();
   const arrFilter = [
@@ -107,9 +109,7 @@ const ListFilter = () => {
                 </span>
                 {item.id === "1" ? (
                   <input
-                    className={`fil rounded-[10px] w-[102.2px] flex justify-center items-center h-[30.9px] text-[#74719E] text-[16px] font-nuni font-[700] ${
-                      item.id === "1" ? "pur" : ""
-                    } cursor-pointer`}
+                    className={`fil rounded-[10px] w-[102.2px] flex justify-center items-center h-[30.9px] text-[#74719E] text-xl text-center font-nuni font-[700] cursor-pointer`}
                     type="text"
                     value={inputValue3}
                     onChange={handleInputChange3}
@@ -182,9 +182,7 @@ const ListFilter = () => {
                 </span>
                 {item.id === "1" ? (
                   <input
-                    className={`fil rounded-[10px] w-[102.2px] flex justify-center items-center h-[30.9px] text-[#74719E] text-[16px] font-nuni font-[700] ${
-                      item.id === "1" ? "pur" : ""
-                    } cursor-pointer`}
+                    className={`fil rounded-[10px] w-[102.2px] flex justify-center items-center h-[30.9px] text-[#74719E] text-xl text-center font-nuni font-[700] cursor-pointer`}
                     type="text"
                     value={inputValue}
                     onChange={handleInputChange}
@@ -258,12 +256,17 @@ const ListFilter = () => {
                 </span>
                 {item.id === "1" ? (
                   <input
-                    className={`fil rounded-[10px] w-[102.2px] flex justify-center items-center h-[30.9px] text-[#74719E] text-[16px] font-nuni font-[700] ${
-                      item.id === "1" ? "pur" : ""
-                    } cursor-pointer`}
+                    className={`fil rounded-[10px] w-[102.2px] flex justify-center items-center h-[30.9px] text-[#74719E] text-xl text-center font-nuni font-[700] cursor-pointer`}
                     type="text"
                     value={inputValue2}
                     onChange={handleInputChange2}
+                  />
+                ) : item.id === "2" ? (
+                  <input
+                    className={`fil rounded-[10px] w-[102.2px] flex justify-center items-center h-[30.9px] text-[#74719E] text-xl text-center font-nuni font-[700] cursor-pointer`}
+                    type="text"
+                    value={inputValue4}
+                    onChange={handleInputChange4}
                   />
                 ) : (
                   <div

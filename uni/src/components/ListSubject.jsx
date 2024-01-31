@@ -32,6 +32,7 @@ const ListSubject = () => {
     inputValue,
     inputValue2,
     inputValue3,
+    inputValue4,
   } = useList();
 
   const [pride, setPride] = useState([
@@ -206,6 +207,14 @@ const ListSubject = () => {
         );
   }, [inputValue2, third]);
 
+  const filteredSemester = useMemo(() => {
+    return inputValue4 === "0"
+      ? third // If inputValue is 0, show the entire array
+      : third.filter(
+          (course) => parseInt(course.mon) === parseInt(inputValue4)
+        );
+  }, [inputValue4, third]);
+
   return (
     <div
       className={`h-[90%] ${
@@ -246,87 +255,202 @@ const ListSubject = () => {
       ) : (
         <div className="flex flex-col w-full h-full">
           {item === "1"
-            ? filteredLessons.map((boot) => (
-                <First
-                  key={boot.id}
-                  boot={boot}
-                  handleActiveMain={
-                    isModalOpen ||
-                    isPracticeFormOpen ||
-                    isGAIFormOpen ||
-                    isContForm ||
-                    isThirdForm ||
-                    isFourthForm ||
-                    isContForms ||
-                    isSpecialFormOpen === true
-                      ? ""
-                      : handleActiveMain
-                  }
-                  item={item}
-                  activeMain={activeMain}
-                  TfiTrash={TfiTrash}
-                  isContForm={isContForm}
-                  setIsContForm={setIsContForm}
-                  handleDelete={handleDelete}
-                />
-              ))
-            : item === "2"
-            ? filteredPride.map((boot) => (
-                <Second
-                  key={boot.id}
-                  boot={boot}
-                  handleActiveMain={
-                    isModalOpen ||
-                    isPracticeFormOpen ||
-                    isGAIFormOpen ||
-                    isContForm ||
-                    isThirdForm ||
-                    isFourthForm ||
-                    isContForms ||
-                    isSpecialFormOpen === true
-                      ? ""
-                      : handleActiveMain
-                  }
-                  handlePride={handlePride}
-                  item={item}
-                  activeMain={activeMain}
-                  TfiTrash={TfiTrash}
-                />
-              ))
-            : item === "3"
-            ? filteredThird.map((boot) => (
-                <Third
-                  key={boot.id}
-                  boot={boot}
-                  handleActiveMain={
-                    isModalOpen ||
-                    isPracticeFormOpen ||
-                    isGAIFormOpen ||
-                    isContForm ||
-                    isThirdForm ||
-                    isFourthForm ||
-                    isContForms ||
-                    isSpecialFormOpen === true
-                      ? ""
-                      : handleActiveMain
-                  }
-                  handleButtonClickThird={handleButtonClickThird}
-                  handleButtonClickFourth={handleButtonClickFourth2}
-                  activeMain={activeMain}
-                  isThirdForm={isThirdForm}
-                  setIsThirdForm={setIsThirdForm}
-                  isFourthForm={isFourthForm} // Corrected typo
-                  setIsFourthForm={setIsFourthForm}
-                  handleButtonClickForms={handleButtonClickForms}
-                  item={item}
-                  handleDelete={handleDelete}
-                  handlePride={handlePride}
-                  TfiTrash={TfiTrash}
-                  isContForms={isContForms}
-                  setIsContForms={setIsContForms}
-                />
-              ))
+            ? inputValue3 === 0
+              ? lessons.map((boot) => (
+                  <First
+                    key={boot.id}
+                    boot={boot}
+                    handleActiveMain={
+                      isModalOpen ||
+                      isPracticeFormOpen ||
+                      isGAIFormOpen ||
+                      isContForm ||
+                      isThirdForm ||
+                      isFourthForm ||
+                      isContForms ||
+                      isSpecialFormOpen === true
+                        ? ""
+                        : handleActiveMain
+                    }
+                    item={item}
+                    activeMain={activeMain}
+                    TfiTrash={TfiTrash}
+                    isContForm={isContForm}
+                    setIsContForm={setIsContForm}
+                    handleDelete={handleDelete}
+                  />
+                ))
+              : filteredLessons.map((boot) => (
+                  <First
+                    key={boot.id}
+                    boot={boot}
+                    handleActiveMain={
+                      isModalOpen ||
+                      isPracticeFormOpen ||
+                      isGAIFormOpen ||
+                      isContForm ||
+                      isThirdForm ||
+                      isFourthForm ||
+                      isContForms ||
+                      isSpecialFormOpen === true
+                        ? ""
+                        : handleActiveMain
+                    }
+                    item={item}
+                    activeMain={activeMain}
+                    TfiTrash={TfiTrash}
+                    isContForm={isContForm}
+                    setIsContForm={setIsContForm}
+                    handleDelete={handleDelete}
+                  />
+                ))
             : ""}
+          {item === "2"
+            ? inputValue === 0
+              ? pride.map((boot) => (
+                  <Second
+                    key={boot.id}
+                    boot={boot}
+                    handleActiveMain={
+                      isModalOpen ||
+                      isPracticeFormOpen ||
+                      isGAIFormOpen ||
+                      isContForm ||
+                      isThirdForm ||
+                      isFourthForm ||
+                      isContForms ||
+                      isSpecialFormOpen === true
+                        ? ""
+                        : handleActiveMain
+                    }
+                    handlePride={handlePride}
+                    item={item}
+                    activeMain={activeMain}
+                    TfiTrash={TfiTrash}
+                  />
+                ))
+              : filteredPride.map((boot) => (
+                  <Second
+                    key={boot.id}
+                    boot={boot}
+                    handleActiveMain={
+                      isModalOpen ||
+                      isPracticeFormOpen ||
+                      isGAIFormOpen ||
+                      isContForm ||
+                      isThirdForm ||
+                      isFourthForm ||
+                      isContForms ||
+                      isSpecialFormOpen === true
+                        ? ""
+                        : handleActiveMain
+                    }
+                    handlePride={handlePride}
+                    item={item}
+                    activeMain={activeMain}
+                    TfiTrash={TfiTrash}
+                  />
+                ))
+            : ""}
+          {item === "3" &&
+            (inputValue2 === 0 && inputValue4 === 0
+              ? third.map((boot) => (
+                  <Third
+                    key={boot.id}
+                    boot={boot}
+                    handleActiveMain={
+                      isModalOpen ||
+                      isPracticeFormOpen ||
+                      isGAIFormOpen ||
+                      isContForm ||
+                      isThirdForm ||
+                      isFourthForm ||
+                      isContForms ||
+                      isSpecialFormOpen === true
+                        ? ""
+                        : handleActiveMain
+                    }
+                    handleButtonClickThird={handleButtonClickThird}
+                    handleButtonClickFourth={handleButtonClickFourth2}
+                    activeMain={activeMain}
+                    isThirdForm={isThirdForm}
+                    setIsThirdForm={setIsThirdForm}
+                    isFourthForm={isFourthForm} // Corrected typo
+                    setIsFourthForm={setIsFourthForm}
+                    handleButtonClickForms={handleButtonClickForms}
+                    item={item}
+                    handleDelete={handleDelete}
+                    handlePride={handlePride}
+                    TfiTrash={TfiTrash}
+                    isContForms={isContForms}
+                    setIsContForms={setIsContForms}
+                  />
+                ))
+              : inputValue2 === "0"
+              ? filteredSemester.map((boot) => (
+                  <Third
+                    key={boot.id}
+                    boot={boot}
+                    handleActiveMain={
+                      isModalOpen ||
+                      isPracticeFormOpen ||
+                      isGAIFormOpen ||
+                      isContForm ||
+                      isThirdForm ||
+                      isFourthForm ||
+                      isContForms ||
+                      isSpecialFormOpen === true
+                        ? ""
+                        : handleActiveMain
+                    }
+                    handleButtonClickThird={handleButtonClickThird}
+                    handleButtonClickFourth={handleButtonClickFourth2}
+                    activeMain={activeMain}
+                    isThirdForm={isThirdForm}
+                    setIsThirdForm={setIsThirdForm}
+                    isFourthForm={isFourthForm} // Corrected typo
+                    setIsFourthForm={setIsFourthForm}
+                    handleButtonClickForms={handleButtonClickForms}
+                    item={item}
+                    handleDelete={handleDelete}
+                    handlePride={handlePride}
+                    TfiTrash={TfiTrash}
+                    isContForms={isContForms}
+                    setIsContForms={setIsContForms}
+                  />
+                ))
+              : filteredThird.map((boot) => (
+                  <Third
+                    key={boot.id}
+                    boot={boot}
+                    handleActiveMain={
+                      isModalOpen ||
+                      isPracticeFormOpen ||
+                      isGAIFormOpen ||
+                      isContForm ||
+                      isThirdForm ||
+                      isFourthForm ||
+                      isContForms ||
+                      isSpecialFormOpen === true
+                        ? ""
+                        : handleActiveMain
+                    }
+                    handleButtonClickThird={handleButtonClickThird}
+                    handleButtonClickFourth={handleButtonClickFourth2}
+                    activeMain={activeMain}
+                    isThirdForm={isThirdForm}
+                    setIsThirdForm={setIsThirdForm}
+                    isFourthForm={isFourthForm} // Corrected typo
+                    setIsFourthForm={setIsFourthForm}
+                    handleButtonClickForms={handleButtonClickForms}
+                    item={item}
+                    handleDelete={handleDelete}
+                    handlePride={handlePride}
+                    TfiTrash={TfiTrash}
+                    isContForms={isContForms}
+                    setIsContForms={setIsContForms}
+                  />
+                )))}
         </div>
       )}
     </div>

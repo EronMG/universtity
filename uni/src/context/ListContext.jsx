@@ -125,10 +125,12 @@ const ListProvider = ({ children }) => {
   const [inputValue, setInputValue] = useState(0);
 
   const handleInputChange = (event) => {
-    const inputValue = event.target.value.replace(/[^0-9]/g, ""); // Оставляем только цифры
-    const value = Math.min(Number(inputValue), 6); // Ограничиваем значение до 5
-    setInputValue(value.toString());
+    let inputValue = event.target.value.replace(/[^0-9]/g, ""); // Оставляем только цифры
+    inputValue = inputValue === "" ? "" : Math.min(Number(inputValue), 6); // Ограничиваем значение до 5, но не допускаем 0
+
+    setInputValue(inputValue.toString());
   };
+
   const [inputValue2, setInputValue2] = useState(0);
 
   const handleInputChange2 = (event) => {
@@ -144,6 +146,13 @@ const ListProvider = ({ children }) => {
     setInputValue3(value.toString());
   };
 
+  const [inputValue4, setInputValue4] = useState(0);
+
+  const handleInputChange4 = (event) => {
+    const inputValue = event.target.value.replace(/[^0-9]/g, ""); // Оставляем только цифры
+    const value = Math.min(Number(inputValue), 6); // Ограничиваем значение до 5
+    setInputValue4(value.toString());
+  };
   return (
     <ListContext.Provider
       value={{
@@ -192,6 +201,8 @@ const ListProvider = ({ children }) => {
         inputValue3,
         handleInputChange2,
         handleInputChange3,
+        inputValue4,
+        handleInputChange4,
       }}
     >
       {children}
