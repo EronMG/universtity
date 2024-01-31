@@ -3,7 +3,7 @@ import "../index.css";
 import { Link } from "react-router-dom";
 
 const Version = () => {
-  const { selectedCaffedra } = useDepartment();
+  const { selectedCaffedra, selectedYear } = useDepartment();
 
   return (
     <div
@@ -15,7 +15,7 @@ const Version = () => {
         <div className="shadowThird">
           <div className="shadowWhite flex items-center justify-center px-[5px] py-[6px] gap-[15px] cursor-pointer">
             <Link
-              onClick={(e) => !selectedCaffedra && e.preventDefault()}
+              onClick={(e) => !selectedYear && e.preventDefault()}
               to="/versions"
               className="text-textSecond text-[24px] font-nuni font-[700]"
             >
