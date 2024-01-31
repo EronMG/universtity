@@ -27,7 +27,7 @@ const DisciplineForm = ({ isOpen, onRequestClose }) => {
   const [controlActive, setControlActive] = useState(false);
   const arrControl = [
     {
-      id: "1",
+      id: "8",
       name: "Экзамен",
       tinyName: "(Эк)",
     },
@@ -37,15 +37,16 @@ const DisciplineForm = ({ isOpen, onRequestClose }) => {
       tinyName: "(За)",
     },
     {
-      id: "3",
+      id: "5",
       name: "Курсовая работа",
       tinyName: "(КР)",
     },
   ];
-  const handleControl = useCallback(
-    () => setControlActive((prev) => !prev),
-    []
-  );
+
+  // const handleControl = useCallback(
+  //   () => setControlActive((prev) => !prev),
+  //   []
+  // );
 
   const [side, setSide] = useState([
     {
@@ -153,6 +154,26 @@ const DisciplineForm = ({ isOpen, onRequestClose }) => {
 
   const handleDirectionAdded = (newDirection) => {
     setSide((prevSide) => [...prevSide, newDirection]);
+  };
+
+  const [selectedItems, setSelectedItems] = useState([]);
+
+  // Функция для обработки клика по чекбоксу
+  const handleCheckboxClick = (e, itemId) => {
+    e.stopPropagation(); // Предотвращаем всплытие события
+    if (selectedItems.includes(itemId)) {
+      setSelectedItems(selectedItems.filter((id) => id !== itemId));
+    } else {
+      setSelectedItems([...selectedItems, itemId]);
+    }
+  };
+
+  // Функция для отображения выбранных элементов
+  const displaySelectedItems = () => {
+    return arrControl
+      .filter((item) => selectedItems.includes(item.id))
+      .map((item) => item.tinyName)
+      .join(", ");
   };
 
   return (
@@ -308,10 +329,12 @@ const DisciplineForm = ({ isOpen, onRequestClose }) => {
                   Тип контроля
                 </span>
                 <div
-                  onClick={handleControl}
+                  onClick={() => setControlActive(!controlActive)}
                   className="bg-transparent h-full outline-none text-black text-2xl font-nuni font-bold text-center cursor-pointer flex items-center justify-center w-[280px]"
                 >
-                  Выбрать
+                  {selectedItems.length > 0
+                    ? displaySelectedItems()
+                    : "Выбрать"}
                 </div>
                 {controlActive && (
                   <div className="modaldiv absolute  px-4 pb-3 pt-6  flex flex-col gap-3 top-[370px] right-[90px]">
@@ -324,7 +347,13 @@ const DisciplineForm = ({ isOpen, onRequestClose }) => {
                           <span>{item.name}</span>
                           <span>{item.tinyName}</span>
                         </div>
-                        <input type="checkbox" name="" id="" />
+                        <input
+                          type="checkbox"
+                          checked={selectedItems.includes(item.id)}
+                          onClick={(e) => handleCheckboxClick(e, item.id)}
+                          readOnly
+                          className=""
+                        />
                       </div>
                     ))}
                   </div>

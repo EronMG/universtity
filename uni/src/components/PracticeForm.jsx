@@ -118,6 +118,12 @@ const PracticeForm = ({ isOpen, onRequestClose }) => {
     setSide((prevSide) => [...prevSide, newDirection]);
   };
 
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const handleCheckboxChange = (option) => {
+    setSelectedOption((prevOption) => (prevOption === option ? null : option));
+  };
+
   return (
     <div>
       <Modal
@@ -296,23 +302,37 @@ const PracticeForm = ({ isOpen, onRequestClose }) => {
                   />
                 </label>
                 <label
-                  className={`modaldiv py-2 flex flex-col overflow-hidden items-center  border-[1px] `}
+                  className={`modaldiv py-2 flex flex-col overflow-hidden items-center border-[1px]`}
                 >
                   <span className="text-[#6C6993] text-2xl font-nuni font-bold border-b-2 h-full flex items-center w-full justify-center">
-                    Часы
+                    {selectedOption ? `${selectedOption}` : "Часы"}
                   </span>
                   <div className="flex flex-col gap-1">
                     <div className="flex gap-5">
                       <span className="text-[#6C6993] text-2xl font-nuni font-bold h-full flex w-[239px] items-center justify-center">
                         Часы на человека
                       </span>
-                      <input type="checkbox" name="" id="" />
+                      <input
+                        type="checkbox"
+                        name=""
+                        id=""
+                        checked={selectedOption === "Часы на человека"}
+                        onChange={() =>
+                          handleCheckboxChange("Часы на человека")
+                        }
+                      />
                     </div>
                     <div className="flex gap-5">
                       <span className="text-[#6C6993] text-2xl font-nuni font-bold h-full flex items-center w-[239px] justify-center">
                         Часы на группу
                       </span>
-                      <input type="checkbox" name="" id="" />
+                      <input
+                        type="checkbox"
+                        name=""
+                        id=""
+                        checked={selectedOption === "Часы на группу"}
+                        onChange={() => handleCheckboxChange("Часы на группу")}
+                      />
                     </div>
                   </div>
                 </label>
