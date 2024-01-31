@@ -194,7 +194,7 @@ const ListSubject = () => {
     return inputValue3 === "0"
       ? lessons // If inputValue is 0, show the entire array
       : lessons.filter(
-          (course) => parseInt(course.name) === parseInt(inputValue3)
+          (course) => parseInt(course.course) === parseInt(inputValue3)
         );
   }, [inputValue3, lessons]);
 
@@ -246,7 +246,7 @@ const ListSubject = () => {
       ) : (
         <div className="flex flex-col w-full h-full">
           {item === "1"
-            ? lessons.map((boot) => (
+            ? filteredLessons.map((boot) => (
                 <First
                   key={boot.id}
                   boot={boot}
