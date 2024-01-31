@@ -3,12 +3,12 @@ import "../index.css";
 import { Link } from "react-router-dom";
 
 const Version = () => {
-  const { selectedCaffedra, selectedYear } = useDepartment();
+  const { selectedYear } = useDepartment();
 
   return (
     <div
       className={`shadowMain pt-[28px] pb-[23px] pl-[13px] pr-[4px] mt-[30px]  ${
-        selectedCaffedra ? "opacity-100" : "opacity-50"
+        selectedYear ? "opacity-100" : "opacity-50"
       }`}
     >
       <div className="shadowSecond py-[15px] px-[12px]">
